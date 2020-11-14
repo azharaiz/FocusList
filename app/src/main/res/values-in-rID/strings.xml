@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Focus List</string>
+    <string name="login">Masuk</string>
+    <string name="logout">Keluar</string>
+    <string name="register">Daftar</string>
+    <string name="email">Surel</string>
+    <string name="password">Sandi</string>
+    <string name="retype_password">Tulis Ulang Sandi</string>
 </resources>
