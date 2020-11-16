@@ -7,9 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 
-class TodoViewAdapter(private val dataSet: Array<String>,
-                      private val cellClickListener: TodoItemClickListener) :
-        RecyclerView.Adapter<TodoViewAdapter.TodoViewHolder>() {
+class TodoViewAdapter(
+    private val dataSet: Array<String>,
+    private val cellClickListener: TodoItemClickListener
+) :
+    RecyclerView.Adapter<TodoViewAdapter.TodoViewHolder>() {
 
     class TodoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.todoItemText)
@@ -17,7 +19,7 @@ class TodoViewAdapter(private val dataSet: Array<String>,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_todo_item, parent, false)
+            .inflate(R.layout.fragment_todo_item, parent, false)
         return TodoViewHolder(view)
     }
 
