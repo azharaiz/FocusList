@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun openLoginPage() {
+    private fun openLoginPage() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
