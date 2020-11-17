@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -19,6 +21,34 @@ class SettingsFragment : Fragment() {
     ): View? {
         val view =
             inflater.inflate(R.layout.fragment_settings, container, false)
+
+        val user = Firebase.auth.currentUser
+
+        user?.let {
+            view.settingsEmail.text = user.email
+            if (user.isEmailVerified) {
+                view.settingsEmailVerification.text = R.string.email_verified.toString()
+                view.btnEmailVerification.visibility = View.GONE
+            } else {
+                view.settingsEmailVerification.text = R.string.email_not_verified.toString()
+                view.settingsEmailVerification
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                view.btnEmailVerification.visibility = View.VISIBLE
+            }
+        }
+
+        view.btnEmailVerification.setOnClickListener {
+            user!!.sendEmailVerification()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(
+                            context,
+                            "Resend Verification Success",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+        }
 
         view.btnLogout.setOnClickListener {
             Firebase.auth.signOut()

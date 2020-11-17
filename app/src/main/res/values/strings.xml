@@ -6,4 +6,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="retype_password">Retype Password</string>
+    <string name="email_verified">Email Verified</string>
+    <string name="email_not_verified">Email not Verified</string>
+    <string name="resend">Resend</string>
+    <string name="settings">Settings</string>
 </resources>

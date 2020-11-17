@@ -13,11 +13,50 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="Settings"
-        android:textSize="24sp"
+        android:text="@string/settings"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingTitle">
+
+        <TextView
+            android:id="@+id/settingsEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/email"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/settingsEmailVerification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/email_verified"
+            android:textColor="#4CAF50" />
+
+        <Button
+            android:id="@+id/btnEmailVerification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_resend"
+            android:text="@string/resend"
+            android:textColor="@color/main"
+            android:visibility="visible" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnLogout"
