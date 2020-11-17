@@ -10,4 +10,7 @@
     <string name="email_not_verified">Email not Verified</string>
     <string name="resend">Resend</string>
     <string name="settings">Settings</string>
+    <string name="todo_list">Todo List</string>
+    <string name="todo_add">Add Todo</string>
+    <string name="todo">Todo</string>
 </resources>

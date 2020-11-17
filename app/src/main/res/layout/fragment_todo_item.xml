@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:paddingHorizontal="20dp"
     android:id="@+id/todo_item"
-    android:paddingVertical="10dp">
+    android:paddingVertical="15dp">
 
     <CheckBox
         android:id="@+id/checkBox"
