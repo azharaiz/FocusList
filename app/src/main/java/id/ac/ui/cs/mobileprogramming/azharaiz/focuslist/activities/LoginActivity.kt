@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -62,10 +63,13 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(
+                    val toast = Toast.makeText(
                         baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT
-                    ).show()
+                    )
+                    toast.setGravity(Gravity.BOTTOM, 0, 400)
+                    toast.show()
+                    progressBar.visibility = View.GONE
                 }
             }
     }

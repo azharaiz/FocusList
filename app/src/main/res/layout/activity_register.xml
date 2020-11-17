@@ -18,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/inputRegisterEmail"
@@ -29,6 +30,7 @@
             android:autofillHints="@string/email"
             android:ems="10"
             android:hint="@string/email"
+            android:backgroundTint="@color/main"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -40,6 +42,7 @@
             android:autofillHints="@string/password"
             android:ems="10"
             android:hint="@string/password"
+            android:backgroundTint="@color/main"
             android:inputType="textPassword" />
 
         <EditText
@@ -52,6 +55,7 @@
             android:autofillHints="@string/retype_password"
             android:ems="10"
             android:hint="@string/retype_password"
+            android:backgroundTint="@color/main"
             android:inputType="textPassword" />
 
     </LinearLayout>
@@ -63,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:visibility="invisible"
+        android:indeterminateDrawable="@drawable/progress"
         app:layout_constraintBottom_toTopOf="@+id/btnRegisterPage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -72,10 +77,12 @@
         android:id="@+id/btnRegisterPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="24dp"
         android:onClick="registerUser"
         android:text="@string/register"
+        android:background="@drawable/button_default"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
