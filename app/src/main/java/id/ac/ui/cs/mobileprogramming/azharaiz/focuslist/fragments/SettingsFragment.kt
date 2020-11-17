@@ -27,10 +27,10 @@ class SettingsFragment : Fragment() {
         user?.let {
             view.settingsEmail.text = user.email
             if (user.isEmailVerified) {
-                view.settingsEmailVerification.text = R.string.email_verified.toString()
+                view.settingsEmailVerification.text = resources.getText(R.string.email_verified)
                 view.btnEmailVerification.visibility = View.GONE
             } else {
-                view.settingsEmailVerification.text = R.string.email_not_verified.toString()
+                view.settingsEmailVerification.text = resources.getText(R.string.email_not_verified)
                 view.settingsEmailVerification
                     .setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
                 view.btnEmailVerification.visibility = View.VISIBLE
