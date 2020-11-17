@@ -11,4 +11,7 @@
     <string name="email_not_verified">Surel Belum Terverifikasi</string>
     <string name="resend">Kirim Ulang</string>
     <string name="settings">Pengaturan</string>
+    <string name="todo_list">Daftar Kegiatan</string>
+    <string name="todo_add">Tambah Kegiatan</string>
+    <string name="todo">Kegiatan</string>
 </resources>
