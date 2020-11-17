@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist
+package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.auth.LoginActivity
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun openLoginPage() {
+    private fun openLoginPage() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
