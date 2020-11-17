@@ -20,4 +20,7 @@
     <string name="todo_update">Update Todo</string>
     <string name="target">Target</string>
     <string name="timer">Timer</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="pause">Pause</string>
 </resources>

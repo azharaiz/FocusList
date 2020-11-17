@@ -21,4 +21,7 @@
     <string name="todo_update">Memperbarui Kegiatan</string>
     <string name="target">Target</string>
     <string name="timer">Timer</string>
+    <string name="start">Mulai</string>
+    <string name="stop">Berhenti</string>
+    <string name="pause">Jeda</string>
 </resources>

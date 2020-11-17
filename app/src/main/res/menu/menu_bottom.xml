@@ -11,6 +11,7 @@
         android:iconTint="@color/main"
         android:title="@string/target" />
     <item
+        android:id="@+id/timerFragment"
         android:icon="@drawable/ic_timer"
         android:iconTint="@color/main"
         android:title="@string/timer" />
