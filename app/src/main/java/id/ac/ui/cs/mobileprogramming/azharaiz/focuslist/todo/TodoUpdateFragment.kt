@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -38,8 +39,7 @@ class TodoUpdateFragment : Fragment() {
         }
 
         view.deleteTodoBtn.setOnClickListener {
-            mTodoViewModel.deleteTodo(args.currentTodo)
-            findNavController().navigate(R.id.action_todoUpdateFragment_to_todoListFragment)
+            deleteItem(args.currentTodo)
         }
 
         return view
@@ -58,5 +58,17 @@ class TodoUpdateFragment : Fragment() {
 
             findNavController().navigate(R.id.action_todoUpdateFragment_to_todoListFragment)
         }
+    }
+
+    private fun deleteItem(todo: Todo) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes") { _, _ ->
+            mTodoViewModel.deleteTodo(todo)
+            findNavController().navigate(R.id.action_todoUpdateFragment_to_todoListFragment)
+        }
+        builder.setNegativeButton("No") { _, _ -> }
+        builder.setTitle("Delete ${args.currentTodo.title}?")
+        builder.setTitle("Are you sure you want to delete ${args.currentTodo.title}?")
+        builder.create().show()
     }
 }
