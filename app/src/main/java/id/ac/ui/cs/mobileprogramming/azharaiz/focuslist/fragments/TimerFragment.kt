@@ -8,9 +8,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.helpers.TimerHelper
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.services.TimerService
+import kotlinx.android.synthetic.main.fragment_timer.*
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 
 class TimerFragment : Fragment() {
@@ -21,35 +24,16 @@ class TimerFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_timer, container, false)
 
-        val intentFilter = IntentFilter()
-        intentFilter.addAction("COUNTER")
-
-        val runningReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                val timeRemaining = intent?.getIntExtra("TIME_REMAINING", 0)
-                view.timerCountDown.text = timeRemaining.toString()
-            }
-        }
-        requireActivity().registerReceiver(runningReceiver, intentFilter)
-
-        val intentStop = IntentFilter()
-        intentStop.addAction("STOP")
-
-        val stopReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                view.btnTimerPause.visibility = View.GONE
-                view.btnTimerStart.visibility = View.VISIBLE
-                view.timerCountDown.text = "25:00"
-            }
-        }
-
-        requireActivity().registerReceiver(stopReceiver, intentStop)
+        registerAllReceiver()
 
         view.btnTimerStart.setOnClickListener {
             view.btnTimerStart.visibility = View.GONE
             view.btnTimerPause.visibility = View.VISIBLE
             val intentService = Intent(context, TimerService::class.java)
-            intentService.putExtra("TIME_VALUE", 10)
+            intentService.putExtra(
+                "TIME_VALUE",
+                view.timerDurationInput.text.toString().toInt() * 60
+            )
             requireActivity().startService(intentService)
         }
 
@@ -59,6 +43,55 @@ class TimerFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun registerAllReceiver() {
+        registerRunningReceiver()
+        registerStopReceiver()
+        registerFinishReceiver()
+    }
+
+    private fun registerFinishReceiver() {
+        val finishedIntent = IntentFilter()
+        finishedIntent.addAction("FINISHED")
+
+        val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                Toast.makeText(context, "Timer finished!", Toast.LENGTH_SHORT).show()
+                btnTimerPause.visibility = View.GONE
+                btnTimerStart.visibility = View.VISIBLE
+                timerCountDown.text = intent?.getStringExtra("PREVIOUS_DURATION") ?: "00:00"
+            }
+        }
+
+        requireActivity().registerReceiver(finishedReceiver, finishedIntent)
+    }
+
+    private fun registerStopReceiver() {
+        val stopIntent = IntentFilter()
+        stopIntent.addAction("STOP")
+
+        val stopReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                btnTimerPause.visibility = View.GONE
+                btnTimerStart.visibility = View.VISIBLE
+                timerCountDown.text = "25:00"
+            }
+        }
+
+        requireActivity().registerReceiver(stopReceiver, stopIntent)
+    }
+
+    private fun registerRunningReceiver() {
+        val startIntent = IntentFilter()
+        startIntent.addAction("COUNTER")
+        val runningReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                val timeRemaining = intent?.getIntExtra("TIME_REMAINING", 0)
+                timerCountDown.text = timeRemaining?.let { TimerHelper.displayTimer(it) }
+            }
+        }
+        requireActivity().registerReceiver(runningReceiver, startIntent)
     }
 
 }

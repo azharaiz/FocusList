@@ -4,16 +4,13 @@ import android.app.Service
 import android.content.Intent
 import android.os.CountDownTimer
 import android.os.IBinder
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.helpers.TimerHelper
 
 class TimerService : Service() {
 
-    enum class TimerState {
-        Stopped, Paused, Running
-    }
-
     private lateinit var timer: CountDownTimer
+    private var timeDurationInSeconds: Long = 0
     private var timeRemainingInSeconds: Long = 0
-    private var timerState = TimerState.Stopped
 
     private val broadCastIntent: Intent = Intent()
 
@@ -23,11 +20,11 @@ class TimerService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val intentValue: Int = intent?.getIntExtra("TIME_VALUE", 0) ?: 0
+        timeDurationInSeconds = intentValue.toLong()
         timeRemainingInSeconds = intentValue.toLong()
         startTimer()
         return super.onStartCommand(intent, flags, startId)
     }
-
     override fun onDestroy() {
         timer.cancel()
         broadCastIntent.action = "STOP"
@@ -36,15 +33,18 @@ class TimerService : Service() {
     }
 
     private fun startTimer() {
-        timerState = TimerState.Running
-        timer = object : CountDownTimer(timeRemainingInSeconds * 1000, 1000) {
+        timer = object : CountDownTimer(timeDurationInSeconds * 1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                timeRemainingInSeconds--
+                timeRemainingInSeconds = millisUntilFinished / 1000
                 broadcastTimerIntent(timeRemainingInSeconds.toInt())
             }
 
             override fun onFinish() {
-                broadCastIntent.action = "STOP"
+                broadCastIntent.action = "FINISHED"
+                broadCastIntent.putExtra(
+                    "PREVIOUS_DURATION",
+                    TimerHelper.displayTimer(timeDurationInSeconds.toInt())
+                )
                 sendBroadcast(broadCastIntent)
             }
         }.start()

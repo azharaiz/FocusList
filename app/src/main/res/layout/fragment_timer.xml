@@ -73,4 +73,19 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/timerDurationInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="Duration in minutes"
+        android:ems="10"
+        android:hint="Duration in minutes"
+        android:inputType="textPersonName"
+        android:text="25"
+        app:layout_constraintBottom_toTopOf="@+id/btnTimerStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerCountDown" />
 </androidx.constraintlayout.widget.ConstraintLayout>
