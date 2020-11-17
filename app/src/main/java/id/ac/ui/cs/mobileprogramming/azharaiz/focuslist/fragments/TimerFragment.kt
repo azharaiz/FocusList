@@ -29,6 +29,8 @@ class TimerFragment : Fragment() {
         view.btnTimerStart.setOnClickListener {
             view.btnTimerStart.visibility = View.GONE
             view.btnTimerPause.visibility = View.VISIBLE
+            view.btnTimerResume.visibility = View.GONE
+            view.timerDurationInput.visibility = View.GONE
             val intentService = Intent(context, TimerService::class.java)
             intentService.putExtra(
                 "TIME_VALUE",
@@ -40,6 +42,24 @@ class TimerFragment : Fragment() {
         view.btnTimerStop.setOnClickListener {
             val intentService = Intent(context, TimerService::class.java)
             requireActivity().stopService(intentService)
+        }
+
+        view.btnTimerPause.setOnClickListener {
+            view.btnTimerStart.visibility = View.GONE
+            view.btnTimerPause.visibility = View.GONE
+            view.btnTimerResume.visibility = View.VISIBLE
+            val pauseIntent = Intent()
+            pauseIntent.action = "PAUSE"
+            activity?.sendBroadcast(pauseIntent)
+        }
+
+        view.btnTimerResume.setOnClickListener {
+            view.btnTimerStart.visibility = View.GONE
+            view.btnTimerPause.visibility = View.VISIBLE
+            view.btnTimerResume.visibility = View.GONE
+            val resumeIntent = Intent()
+            resumeIntent.action = "RESUME"
+            activity?.sendBroadcast(resumeIntent)
         }
 
         return view
@@ -58,8 +78,10 @@ class TimerFragment : Fragment() {
         val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 Toast.makeText(context, "Timer finished!", Toast.LENGTH_SHORT).show()
-                btnTimerPause.visibility = View.GONE
                 btnTimerStart.visibility = View.VISIBLE
+                btnTimerPause.visibility = View.GONE
+                btnTimerResume.visibility = View.GONE
+                timerDurationInput.visibility = View.VISIBLE
                 timerCountDown.text = intent?.getStringExtra("PREVIOUS_DURATION") ?: "00:00"
             }
         }
@@ -73,8 +95,10 @@ class TimerFragment : Fragment() {
 
         val stopReceiver: BroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                btnTimerPause.visibility = View.GONE
                 btnTimerStart.visibility = View.VISIBLE
+                btnTimerPause.visibility = View.GONE
+                btnTimerResume.visibility = View.GONE
+                timerDurationInput.visibility = View.VISIBLE
                 timerCountDown.text = "25:00"
             }
         }
