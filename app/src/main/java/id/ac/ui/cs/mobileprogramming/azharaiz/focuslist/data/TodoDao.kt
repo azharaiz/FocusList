@@ -1,10 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface TodoDao {
@@ -13,6 +10,12 @@ interface TodoDao {
 
     @Update
     suspend fun updateTodo(todo: Todo)
+
+    @Delete
+    suspend fun deleteTodo(todo: Todo)
+
+    @Query("DELETE FROM todo_table")
+    suspend fun deleteAllTodo()
 
     @Query("SELECT * FROM todo_table")
     fun readAllTodos(): LiveData<List<Todo>>

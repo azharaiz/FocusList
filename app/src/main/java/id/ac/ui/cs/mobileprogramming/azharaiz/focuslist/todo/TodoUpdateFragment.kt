@@ -37,6 +37,11 @@ class TodoUpdateFragment : Fragment() {
             updateItem()
         }
 
+        view.deleteTodoBtn.setOnClickListener {
+            mTodoViewModel.deleteTodo(args.currentTodo)
+            findNavController().navigate(R.id.action_todoUpdateFragment_to_todoListFragment)
+        }
+
         return view
     }
 
