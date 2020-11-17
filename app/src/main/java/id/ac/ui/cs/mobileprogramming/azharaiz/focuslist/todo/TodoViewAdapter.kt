@@ -3,18 +3,21 @@ package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
 
-class TodoViewAdapter(
-    private val dataSet: Array<String>,
-    private val cellClickListener: TodoItemClickListener
-) :
-    RecyclerView.Adapter<TodoViewAdapter.TodoViewHolder>() {
+class TodoViewAdapter : RecyclerView.Adapter<TodoViewAdapter.TodoViewHolder>() {
+
+    private var todoList = emptyList<Todo>()
 
     class TodoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.todoItemText)
+        val checkBox: CheckBox = view.findViewById(R.id.checkBox)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
@@ -24,12 +27,21 @@ class TodoViewAdapter(
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.textView.text = dataSet[position]
+        val currentItem = todoList[position]
+        holder.textView.text = currentItem.title
+        holder.checkBox.isChecked = currentItem.status
 
-        holder.textView.setOnClickListener {
-            cellClickListener.onTodoItemClickListener(dataSet[position])
+        holder.itemView.findViewById<LinearLayout>(R.id.todo_item).setOnClickListener {
+            val action =
+                TodoListFragmentDirections.actionTodoListFragmentToTodoUpdateFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
         }
     }
 
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount() = todoList.size
+
+    fun setData(todos: List<Todo>) {
+        this.todoList = todos
+        notifyDataSetChanged()
+    }
 }
