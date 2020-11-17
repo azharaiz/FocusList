@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.adapters.TodoViewAdapter
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel
 
-class TodoListFragment : Fragment() {
+class TodoListFragment : Fragment(), TodoStatusListener {
 
     private lateinit var mTodoViewModel: TodoViewModel
 
@@ -26,7 +27,7 @@ class TodoListFragment : Fragment() {
         val btnAdd = view.findViewById<FloatingActionButton>(R.id.btnAdd)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.todo_list_recycler_view)
-        val adapter = TodoViewAdapter()
+        val adapter = TodoViewAdapter(this)
 
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
@@ -43,4 +44,12 @@ class TodoListFragment : Fragment() {
         }
         return view
     }
+
+    override fun onTodoStatusUpdate(todo: Todo) {
+        mTodoViewModel.updateTodo(todo)
+    }
+}
+
+interface TodoStatusListener {
+    fun onTodoStatusUpdate(todo: Todo)
 }

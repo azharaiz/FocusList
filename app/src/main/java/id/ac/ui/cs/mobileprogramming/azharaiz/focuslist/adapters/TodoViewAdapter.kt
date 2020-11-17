@@ -11,10 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoListFragmentDirections
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoStatusListener
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel
+import kotlinx.android.synthetic.main.fragment_todo_item.view.*
 
-class TodoViewAdapter : RecyclerView.Adapter<TodoViewAdapter.TodoViewHolder>() {
+class TodoViewAdapter(private val onTodoStatusListener: TodoStatusListener) :
+    RecyclerView.Adapter<TodoViewAdapter.TodoViewHolder>() {
 
     private var todoList = emptyList<Todo>()
+    private lateinit var todoViewModel: TodoViewModel
 
     class TodoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.todoItemText)
@@ -36,6 +41,11 @@ class TodoViewAdapter : RecyclerView.Adapter<TodoViewAdapter.TodoViewHolder>() {
             val action =
                 TodoListFragmentDirections.actionTodoListFragmentToTodoUpdateFragment(currentItem)
             holder.itemView.findNavController().navigate(action)
+        }
+
+        holder.itemView.checkBox.setOnClickListener {
+            val clickedTodo = Todo(currentItem.id, currentItem.title, !currentItem.status)
+            onTodoStatusListener.onTodoStatusUpdate(clickedTodo)
         }
     }
 
