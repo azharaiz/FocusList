@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo
+package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel
 
 class AddTodoFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist
+package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities
 
 import android.content.Intent
 import android.os.Bundle

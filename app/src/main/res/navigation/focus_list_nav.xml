@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/todoListFragment"
-        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo.TodoListFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoListFragment"
         android:label="TodoListFragment">
         <action
             android:id="@+id/action_todoListFragment_to_addTodoFragment"
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/addTodoFragment"
-        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo.AddTodoFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.AddTodoFragment"
         android:label="fragment_add_todo"
         tools:layout="@layout/fragment_add_todo">
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/todoUpdateFragment"
-        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo.TodoUpdateFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoUpdateFragment"
         android:label="fragment_todo_update"
         tools:layout="@layout/fragment_todo_update">
         <action

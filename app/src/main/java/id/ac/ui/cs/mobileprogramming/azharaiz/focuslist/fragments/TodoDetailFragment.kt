@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo
+package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

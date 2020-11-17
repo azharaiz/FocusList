@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo
+package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.adapters.TodoViewAdapter
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel
 
 class TodoListFragment : Fragment() {
 

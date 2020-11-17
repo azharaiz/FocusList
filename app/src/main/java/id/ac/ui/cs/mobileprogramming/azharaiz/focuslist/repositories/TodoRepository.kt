@@ -1,6 +1,8 @@
-package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data
+package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.repositories
 
 import androidx.lifecycle.LiveData
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.TodoDao
 
 class TodoRepository(private val todoDao: TodoDao) {
 

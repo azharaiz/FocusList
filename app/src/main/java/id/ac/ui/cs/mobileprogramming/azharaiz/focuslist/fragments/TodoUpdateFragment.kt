@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo
+package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel
 import kotlinx.android.synthetic.main.fragment_todo_update.*
 import kotlinx.android.synthetic.main.fragment_todo_update.view.*
 

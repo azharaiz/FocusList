@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo
+package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoListFragmentDirections
 
 class TodoViewAdapter : RecyclerView.Adapter<TodoViewAdapter.TodoViewHolder>() {
 

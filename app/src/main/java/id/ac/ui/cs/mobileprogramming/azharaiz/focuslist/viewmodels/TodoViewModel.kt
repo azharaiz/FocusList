@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.todo
+package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.TodoDatabase
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.TodoRepository
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.repositories.TodoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
