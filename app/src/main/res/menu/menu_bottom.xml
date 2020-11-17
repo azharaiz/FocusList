@@ -4,15 +4,19 @@
     <item
         android:id="@+id/todoListFragment"
         android:icon="@drawable/ic_todo_checkbox"
-        android:title="Todo" />
+        android:iconTint="@color/main"
+        android:title="@string/todo" />
     <item
         android:icon="@drawable/ic_star"
-        android:title="Target" />
+        android:iconTint="@color/main"
+        android:title="@string/target" />
     <item
         android:icon="@drawable/ic_timer"
-        android:title="Timer" />
+        android:iconTint="@color/main"
+        android:title="@string/timer" />
     <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"
-        android:title="Settings" />
+        android:iconTint="@color/main"
+        android:title="@string/settings" />
 </menu>
