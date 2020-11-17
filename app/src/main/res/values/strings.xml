@@ -15,4 +15,7 @@
     <string name="todo">Todo</string>
     <string name="todo_title">Todo Title</string>
     <string name="add">Add</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="todo_update">Update Todo</string>
 </resources>
