@@ -14,4 +14,6 @@
     <string name="todo_list">Daftar Kegiatan</string>
     <string name="todo_add">Tambah Kegiatan</string>
     <string name="todo">Kegiatan</string>
+    <string name="todo_title">Judul Kegiatan</string>
+    <string name="add">Tambah</string>
 </resources>
