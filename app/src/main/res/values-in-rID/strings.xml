@@ -26,4 +26,9 @@
     <string name="pause">Jeda</string>
     <string name="resume">Lanjutkan</string>
     <string name="timer_log">Log Timer</string>
+    <string name="status">Status</string>
+    <string name="reward_add">Tambah Hadiah</string>
+    <string name="title">Judul</string>
+    <string name="description">Deskripsi</string>
+    <string name="reward_update">Memperbarui Hadiah</string>
 </resources>
