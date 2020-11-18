@@ -9,7 +9,7 @@
     <item
         android:icon="@drawable/ic_star"
         android:iconTint="@color/main"
-        android:title="@string/target" />
+        android:title="@string/reward" />
     <item
         android:id="@+id/timerFragment"
         android:icon="@drawable/ic_timer"
