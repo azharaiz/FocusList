@@ -25,4 +25,5 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="timer_log">Timer Log</string>
+    <string name="status">Status</string>
 </resources>
