@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.adapters.RewardViewAdapter
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Reward
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.RewardViewModel
 
 class RewardListFragment : Fragment() {
@@ -42,8 +42,7 @@ class RewardListFragment : Fragment() {
         })
 
         btnAdd.setOnClickListener {
-            val reward = Reward(0, "Hello World!", "helo helo helo helo helo")
-            mRewardViewModel.addReward(reward)
+            findNavController().navigate(R.id.action_rewardListFragment_to_rewardAddFragment)
         }
         return view
     }

@@ -69,6 +69,21 @@
         android:id="@+id/rewardListFragment"
         android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardListFragment"
         android:label="fragment_reward_list"
-        tools:layout="@layout/fragment_reward_list" />
+        tools:layout="@layout/fragment_reward_list">
+        <action
+            android:id="@+id/action_rewardListFragment_to_rewardAddFragment"
+            app:destination="@id/rewardAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardAddFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardAddFragment"
+        android:label="fragment_reward_add"
+        tools:layout="@layout/fragment_reward_add">
+        <action
+            android:id="@+id/action_rewardAddFragment_to_rewardListFragment"
+            app:destination="@id/rewardListFragment"
+            app:popUpTo="@id/rewardListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

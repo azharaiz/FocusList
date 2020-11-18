@@ -27,4 +27,7 @@
     <string name="resume">Lanjutkan</string>
     <string name="timer_log">Log Timer</string>
     <string name="status">Status</string>
+    <string name="add_reward">Tambah Hadiah</string>
+    <string name="title">Judul</string>
+    <string name="description">Deskripsi</string>
 </resources>
