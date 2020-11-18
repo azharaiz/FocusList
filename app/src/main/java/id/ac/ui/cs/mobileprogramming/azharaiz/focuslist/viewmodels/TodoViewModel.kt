@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.AppDatabase
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.TodoDatabase
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.repositories.TodoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,7 +16,7 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: TodoRepository
 
     init {
-        val todoDao = TodoDatabase.getDatabase(application).todoDao()
+        val todoDao = AppDatabase.getDatabase(application).todoDao()
         repository = TodoRepository(todoDao)
         readAllTodos = repository.readAllTodos
     }

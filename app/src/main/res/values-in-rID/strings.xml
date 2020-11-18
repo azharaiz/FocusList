@@ -25,4 +25,5 @@
     <string name="stop">Berhenti</string>
     <string name="pause">Jeda</string>
     <string name="resume">Lanjutkan</string>
+    <string name="timer_log">Log Timer</string>
 </resources>
