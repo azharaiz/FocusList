@@ -26,7 +26,8 @@
     <string name="resume">Resume</string>
     <string name="timer_log">Timer Log</string>
     <string name="status">Status</string>
-    <string name="add_reward">Add Reward</string>
+    <string name="reward_add">Add Reward</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="reward_update">Update Reward</string>
 </resources>
