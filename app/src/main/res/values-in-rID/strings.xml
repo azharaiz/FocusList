@@ -19,6 +19,11 @@
     <string name="update">Memperbarui</string>
     <string name="delete">Hapus</string>
     <string name="todo_update">Memperbarui Kegiatan</string>
-    <string name="target">Target</string>
+    <string name="reward">Hadiah</string>
     <string name="timer">Timer</string>
+    <string name="start">Mulai</string>
+    <string name="stop">Berhenti</string>
+    <string name="pause">Jeda</string>
+    <string name="resume">Lanjutkan</string>
+    <string name="timer_log">Log Timer</string>
 </resources>

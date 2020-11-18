@@ -10,6 +10,7 @@
         android:fullBackupContent="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.FocusList">
+        <service android:name=".services.TimerService" />
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme">

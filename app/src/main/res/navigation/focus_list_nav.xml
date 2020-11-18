@@ -46,4 +46,24 @@
         android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/timerFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TimerFragment"
+        android:label="fragment_timer"
+        tools:layout="@layout/fragment_timer">
+        <action
+            android:id="@+id/action_timerFragment_to_timerLogFragment"
+            app:destination="@id/timerLogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/timerLogFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TimerLogFragment"
+        android:label="TimerLogFragment">
+        <action
+            android:id="@+id/action_timerLogFragment_to_timerFragment"
+            app:destination="@id/timerFragment"
+            app:popUpTo="@id/timerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 </navigation>

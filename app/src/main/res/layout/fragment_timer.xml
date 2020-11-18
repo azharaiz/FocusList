@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_timer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.TimerFragment">
+
+    <TextView
+        android:id="@+id/titleTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/timer"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnTimerStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_default"
+        android:text="@string/start"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/btnTimerStop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnTimerPause"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_resend"
+        android:text="@string/pause"
+        android:textColor="@color/main"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/btnTimerStop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnTimerResume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_default"
+        android:text="@string/resume"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/btnTimerStop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnTimerStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_danger"
+        android:text="@string/stop"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/timerCountDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25:00"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnTimerStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/timerDurationInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="Duration in minutes"
+        android:ems="10"
+        android:hint="Duration in minutes"
+        android:inputType="textPersonName"
+        android:text="25"
+        app:layout_constraintBottom_toTopOf="@+id/btnTimerStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerCountDown" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/timerHistoryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/main"
+        android:clickable="true"
+        android:contentDescription="@string/timer_log"
+        android:scaleType="center"
+        android:src="@drawable/ic_history"
+        android:tint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
