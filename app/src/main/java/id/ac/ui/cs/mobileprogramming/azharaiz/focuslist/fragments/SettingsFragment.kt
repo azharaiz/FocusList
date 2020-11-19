@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities.MainActivity
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities.TodoActivity
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 class SettingsFragment : Fragment() {
@@ -52,7 +52,7 @@ class SettingsFragment : Fragment() {
 
         view.btnLogout.setOnClickListener {
             Firebase.auth.signOut()
-            (activity as MainActivity).openLoginPage()
+            (activity as TodoActivity).openLoginPage()
         }
         return view
     }

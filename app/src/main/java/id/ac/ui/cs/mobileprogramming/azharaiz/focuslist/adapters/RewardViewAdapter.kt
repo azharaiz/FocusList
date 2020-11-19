@@ -2,11 +2,11 @@ package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Reward
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentRewardItemBinding
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardListFragmentDirections
+
+//import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardListFragmentDirections
 
 class RewardViewAdapter() :
     RecyclerView.Adapter<RewardViewAdapter.RewardViewHolder>() {
@@ -23,13 +23,13 @@ class RewardViewAdapter() :
             binding.executePendingBindings()
         }
 
-        fun navigation(reward: Reward) {
-            itemView.setOnClickListener {
-                val action = RewardListFragmentDirections
-                    .actionRewardListFragmentToRewardUpdateFragment(reward)
-                itemView.findNavController().navigate(action)
-            }
-        }
+//        fun navigation(reward: Reward) {
+//            itemView.setOnClickListener {
+//                val action = RewardListFragmentDirections
+//                    .actionRewardListFragmentToRewardUpdateFragment(reward)
+//                itemView.findNavController().navigate(action)
+//            }
+//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RewardViewHolder {
@@ -42,7 +42,7 @@ class RewardViewAdapter() :
     override fun onBindViewHolder(holder: RewardViewHolder, position: Int) {
         val currentItem = rewardList[position]
         holder.bind(currentItem)
-        holder.navigation(currentItem)
+//        holder.navigation(currentItem)
     }
 
     override fun getItemCount() = rewardList.size
