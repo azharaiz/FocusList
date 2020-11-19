@@ -29,6 +29,12 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         clearData()
     }
 
+    fun updateData(todo: Todo) {
+        todoId.value = todo.id
+        todoTitle.value = todo.title
+        todoStatus.value = todo.status
+    }
+
     fun clearData() {
         todoId = MutableLiveData(0)
         todoTitle = MutableLiveData("")

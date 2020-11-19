@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,13 +18,15 @@ import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel
 
 class TodoListFragment : Fragment(), TodoStatusListener {
 
+    private val TAG = "TODO_LIST_FRAGMENT"
+
     private lateinit var mTodoViewModel: TodoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_todo_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_todo_main, container, false)
         val btnAdd = view.findViewById<FloatingActionButton>(R.id.btnAdd)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.todo_list_recycler_view)
@@ -48,8 +51,19 @@ class TodoListFragment : Fragment(), TodoStatusListener {
     override fun onTodoStatusUpdate(todo: Todo) {
         mTodoViewModel.updateTodo(todo)
     }
+
+    override fun onTodoClicked(todo: Todo) {
+        mTodoViewModel.updateData(todo)
+        Log.i(TAG, mTodoViewModel.todoTitle.value.toString())
+    }
+
+    override fun checkOrientation(): Int {
+        return requireActivity().resources.configuration.orientation
+    }
 }
 
 interface TodoStatusListener {
     fun onTodoStatusUpdate(todo: Todo)
+    fun onTodoClicked(todo: Todo)
+    fun checkOrientation(): Int
 }
