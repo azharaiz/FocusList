@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="todoUpdateViewModel"
-            type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.todo.TodoUpdateViewModel" />
+            name="todoViewModel"
+            type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:buttonTint="@color/main"
-                android:checked="@={todoUpdateViewModel.todoStatus}" />
+                android:checked="@={todoViewModel.todoStatus}" />
 
             <EditText
                 android:id="@+id/updateTodoTitle"
@@ -57,7 +57,7 @@
                 android:ems="10"
                 android:hint="@string/todo_title"
                 android:inputType="textPersonName"
-                android:text="@={todoUpdateViewModel.todoTitle}" />
+                android:text="@={todoViewModel.todoTitle}" />
         </LinearLayout>
 
         <Button
@@ -67,7 +67,6 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_default"
-            android:onClick="@{() -> todoUpdateViewModel.save()}"
             android:text="@string/update"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/deleteTodoBtn"

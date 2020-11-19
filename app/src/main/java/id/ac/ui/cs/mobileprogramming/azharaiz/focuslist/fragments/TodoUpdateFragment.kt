@@ -12,13 +12,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentTodoUpdateBinding
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.todo.TodoUpdateViewModel
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel
 
 class TodoUpdateFragment : Fragment() {
 
     private val args by navArgs<TodoUpdateFragmentArgs>()
 
-    private lateinit var mTodoUpdateViewModel: TodoUpdateViewModel
+    private lateinit var mTodoViewModel: TodoViewModel
     private lateinit var binding: FragmentTodoUpdateBinding
 
     override fun onCreateView(
@@ -27,18 +27,18 @@ class TodoUpdateFragment : Fragment() {
     ): View? {
         binding = FragmentTodoUpdateBinding.inflate(inflater, container, false)
 
-        mTodoUpdateViewModel = ViewModelProvider(this).get(TodoUpdateViewModel::class.java)
+        mTodoViewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
 
-        mTodoUpdateViewModel.todoId.value = args.currentTodo.id
-        mTodoUpdateViewModel.todoTitle.value = args.currentTodo.title
-        mTodoUpdateViewModel.todoStatus.value = args.currentTodo.status
+        mTodoViewModel.todoId.value = args.currentTodo.id
+        mTodoViewModel.todoTitle.value = args.currentTodo.title
+        mTodoViewModel.todoStatus.value = args.currentTodo.status
 
         binding.lifecycleOwner = requireActivity()
-        binding.todoUpdateViewModel = mTodoUpdateViewModel
+        binding.todoViewModel = mTodoViewModel
 
 
         binding.updateTodoBtn.setOnClickListener {
-            mTodoUpdateViewModel.save()
+            mTodoViewModel.update()
             Toast.makeText(requireContext(), "Update success", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_todoUpdateFragment_to_todoListFragment)
         }
@@ -46,7 +46,7 @@ class TodoUpdateFragment : Fragment() {
         binding.deleteTodoBtn.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
             builder.setPositiveButton("Yes") { _, _ ->
-                mTodoUpdateViewModel.delete()
+                mTodoViewModel.delete()
                 findNavController().navigate(R.id.action_todoUpdateFragment_to_todoListFragment)
             }
             builder.setNegativeButton("No") { _, _ -> }

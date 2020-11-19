@@ -9,11 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentAddTodoBinding
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.todo.TodoAddViewModel
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel
 
 class TodoAddFragment : Fragment() {
 
-    private lateinit var mTodoAddViewModel: TodoAddViewModel
+    private lateinit var mTodoViewModel: TodoViewModel
     private lateinit var binding: FragmentAddTodoBinding
 
     override fun onCreateView(
@@ -21,13 +21,13 @@ class TodoAddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddTodoBinding.inflate(inflater, container, false)
-        mTodoAddViewModel = ViewModelProvider(this).get(TodoAddViewModel::class.java)
+        mTodoViewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
 
         binding.lifecycleOwner = requireActivity()
-        binding.todoAddViewModel = mTodoAddViewModel
+        binding.todoViewModel = mTodoViewModel
 
         binding.addTodoBtn.setOnClickListener {
-            mTodoAddViewModel.save()
+            mTodoViewModel.create()
             findNavController().navigate(R.id.action_addTodoFragment_to_todoListFragment)
         }
 
