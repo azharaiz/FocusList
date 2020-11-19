@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/addTodoFragment"
-        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.AddTodoFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoAddFragment"
         android:label="fragment_add_todo"
         tools:layout="@layout/fragment_add_todo">
         <action

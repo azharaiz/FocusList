@@ -1,78 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.TodoUpdateFragment">
+<layout>
 
-    <TextView
-        android:id="@+id/titleUpdateTodo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/todo_update"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+        <variable
+            name="todoViewModel"
+            type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:orientation="horizontal"
-        android:padding="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleUpdateTodo">
+        android:layout_height="match_parent"
+        tools:context=".fragments.TodoUpdateFragment">
 
-        <CheckBox
-            android:id="@+id/updateTodoCheckbox"
+        <TextView
+            android:id="@+id/titleUpdateTodo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:buttonTint="@color/main" />
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/todo_update"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/updateTodoTitle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="7"
-            android:autofillHints="@string/todo_title"
-            android:ems="10"
-            android:backgroundTint="@color/main"
-            android:hint="@string/todo_title"
-            android:inputType="textPersonName" />
-    </LinearLayout>
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleUpdateTodo">
 
-    <Button
-        android:id="@+id/updateTodoBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/button_default"
-        android:text="@string/update"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/deleteTodoBtn"
-        app:layout_constraintEnd_toEndOf="@+id/deleteTodoBtn"
-        app:layout_constraintStart_toStartOf="@+id/deleteTodoBtn" />
+            <CheckBox
+                android:id="@+id/updateTodoCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/main"
+                android:checked="@={todoViewModel.todoStatus}" />
 
-    <Button
-        android:id="@+id/deleteTodoBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/button_danger"
-        android:text="@string/delete"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                android:id="@+id/updateTodoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:autofillHints="@string/todo_title"
+                android:backgroundTint="@color/main"
+                android:ems="10"
+                android:hint="@string/todo_title"
+                android:inputType="textPersonName"
+                android:text="@={todoViewModel.todoTitle}" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/updateTodoBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_default"
+            android:text="@string/update"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/deleteTodoBtn"
+            app:layout_constraintEnd_toEndOf="@+id/deleteTodoBtn"
+            app:layout_constraintStart_toStartOf="@+id/deleteTodoBtn" />
+
+        <Button
+            android:id="@+id/deleteTodoBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_danger"
+            android:text="@string/delete"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
