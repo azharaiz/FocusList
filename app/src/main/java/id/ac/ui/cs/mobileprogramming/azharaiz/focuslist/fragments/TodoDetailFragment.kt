@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities.TimerActivity
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentTodoDetailBinding
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel
 
@@ -32,6 +34,12 @@ class TodoDetailFragment : Fragment() {
             } else {
                 findNavController().navigate(R.id.action_todoDetailFragment2_to_todoUpdateFragment)
             }
+        }
+
+        binding.buttonStartTimer.setOnClickListener {
+            val intent = Intent(requireActivity(), TimerActivity::class.java)
+            intent.putExtra("TODO_DURATION", mTodoViewModel.todoDuration.value)
+            startActivity(intent)
         }
 
 

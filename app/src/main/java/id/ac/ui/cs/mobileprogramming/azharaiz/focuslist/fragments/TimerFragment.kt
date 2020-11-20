@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentTimerBinding
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.helpers.TimerHelper
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.services.TimerService
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TimerViewModel
 import kotlinx.android.synthetic.main.fragment_timer.*
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 
@@ -19,6 +22,9 @@ class TimerFragment : Fragment() {
     private var mBound: Boolean = false
 
     private lateinit var runningReceiver: BroadcastReceiver
+
+    private lateinit var binding: FragmentTimerBinding
+    private val mTimerViewModel: TimerViewModel by activityViewModels()
 
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
@@ -44,7 +50,11 @@ class TimerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_timer, container, false)
+        binding = FragmentTimerBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = requireActivity()
+        binding.timerViewModel = mTimerViewModel
+
+        val view = binding.root
 
         view.btnTimerStart.setOnClickListener {
             view.btnTimerStart.visibility = View.GONE
