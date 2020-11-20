@@ -37,13 +37,7 @@ class TodoUpdateFragment : Fragment() {
         binding.updateTodoBtn.setOnClickListener {
             mTodoViewModel.update()
             Toast.makeText(requireContext(), "Update success", Toast.LENGTH_SHORT).show()
-            Log.i(TAG, mTodoViewModel.todoTitle.value.toString())
-            if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                findNavController().navigate(R.id.action_todoUpdateFragment_to_todoListFragment)
-            } else {
-                findNavController().navigate(R.id.action_todoUpdateFragment2_to_todoDetailFragment)
-            }
-            Log.i(TAG, mTodoViewModel.todoTitle.value.toString())
+            navigateBack()
         }
 
         binding.deleteTodoBtn.setOnClickListener {
@@ -51,9 +45,7 @@ class TodoUpdateFragment : Fragment() {
             val builder = AlertDialog.Builder(requireContext())
             builder.setPositiveButton("Yes") { _, _ ->
                 mTodoViewModel.delete()
-                if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    findNavController().navigate(R.id.action_todoUpdateFragment_to_todoListFragment)
-                }
+                navigateBack()
             }
             builder.setNegativeButton("No") { _, _ -> }
             builder.setTitle("Delete ${mTodoViewModel.todoTitle.value}?")
@@ -63,23 +55,11 @@ class TodoUpdateFragment : Fragment() {
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.i(TAG, "START")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i(TAG, "DESTROY")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.i(TAG, "STOP")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i(TAG, "RESUME")
+    private fun navigateBack() {
+        if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            findNavController().navigate(R.id.action_todoUpdateFragment_to_todoListFragment)
+        } else {
+            findNavController().navigate(R.id.action_todoUpdateFragment2_to_todoDetailFragment)
+        }
     }
 }
