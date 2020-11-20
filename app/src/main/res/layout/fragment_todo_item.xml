@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -8,7 +8,7 @@
             type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:id="@+id/todo_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,10 @@
             android:id="@+id/todoItemText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_weight="7"
+            android:foregroundGravity="fill_horizontal"
+            android:gravity="fill"
             android:text="@{todo.title}"
             android:textSize="18sp" />
     </LinearLayout>

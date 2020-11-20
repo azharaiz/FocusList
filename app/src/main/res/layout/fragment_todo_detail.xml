@@ -46,7 +46,7 @@
                 android:backgroundTint="@color/main"
                 android:ems="10"
                 android:text="@{todoViewModel.todoTitle}"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
         </LinearLayout>
 
         <TextView
@@ -69,6 +69,7 @@
             android:text="@{Converter.INSTANCE.showDuration(todoViewModel.todoDuration)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
         <Button

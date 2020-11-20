@@ -37,4 +37,10 @@
     <string name="todo_detail">Detail Todo</string>
     <string name="start_timer">Start Timer</string>
     <string name="set_duration">Set Duration</string>
+    <string name="MPD_action_done">Selesai</string>
+    <string name="MPD_action_cancel">Kembali</string>
+    <string name="MPD_male">Pria</string>
+    <string name="MPD_female">Wanita</string>
+    <string name="MPD_empty_message">Nilai tidak boleh kosong</string>
+    <string name="MPD_incorrect_message">Silahkan pilih nilai yang benar</string>
 </resources>
