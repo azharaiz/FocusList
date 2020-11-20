@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_todoDetailFragment_to_todoUpdateFragment2"
             app:destination="@id/todoUpdateFragmentLandScape" />
+        <action
+            android:id="@+id/action_todoDetailFragment_to_todoAddFragment"
+            app:destination="@id/todoAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/todoUpdateFragmentLandScape"
@@ -18,6 +21,14 @@
         android:label="TodoUpdateFragment">
         <action
             android:id="@+id/action_todoUpdateFragment2_to_todoDetailFragment"
+            app:destination="@id/todoDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/todoAddFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoAddFragment"
+        android:label="TodoAddFragment">
+        <action
+            android:id="@+id/action_todoAddFragment_to_todoDetailFragment"
             app:destination="@id/todoDetailFragment" />
     </fragment>
 </navigation>

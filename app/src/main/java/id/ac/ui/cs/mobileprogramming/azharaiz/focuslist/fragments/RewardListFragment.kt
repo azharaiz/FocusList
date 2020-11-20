@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,8 +42,10 @@ class RewardListFragment : Fragment(), RewardStatusListener {
             adapter.setData(rewards)
         })
 
-        btnAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_rewardListFragment_to_rewardAddFragment)
+        if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            btnAdd.setOnClickListener {
+                findNavController().navigate(R.id.action_rewardListFragment_to_rewardAddFragment)
+            }
         }
         return view
     }

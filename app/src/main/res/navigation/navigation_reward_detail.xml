@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_rewardDetailFragment_to_rewardUpdateFragment2"
             app:destination="@id/rewardUpdateFragment2" />
+        <action
+            android:id="@+id/action_rewardDetailFragment_to_rewardAddFragment2"
+            app:destination="@id/rewardAddFragment2" />
     </fragment>
     <fragment
         android:id="@+id/rewardUpdateFragment2"
@@ -18,6 +21,14 @@
         android:label="RewardUpdateFragment">
         <action
             android:id="@+id/action_rewardUpdateFragment2_to_rewardDetailFragment"
+            app:destination="@id/rewardDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardAddFragment2"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardAddFragment"
+        android:label="RewardAddFragment">
+        <action
+            android:id="@+id/action_rewardAddFragment2_to_rewardDetailFragment"
             app:destination="@id/rewardDetailFragment" />
     </fragment>
 </navigation>

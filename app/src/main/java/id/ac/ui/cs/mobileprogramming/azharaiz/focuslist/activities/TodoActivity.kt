@@ -3,6 +3,8 @@ package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -40,5 +42,9 @@ class TodoActivity : BaseActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun clickAddTodo(view: View) {
+        findNavController(R.id.navHostTodo).navigate(R.id.action_todoDetailFragment_to_todoAddFragment)
     }
 }

@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -40,8 +41,10 @@ class TodoListFragment : Fragment(), TodoStatusListener {
             adapter.setData(todos)
         })
 
-        btnAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_todoListFragment_to_addTodoFragment)
+        if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            btnAdd.setOnClickListener {
+                findNavController().navigate(R.id.action_todoListFragment_to_addTodoFragment)
+            }
         }
         return view
     }

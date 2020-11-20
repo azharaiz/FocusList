@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,9 +29,17 @@ class TodoAddFragment : Fragment() {
 
         binding.addTodoBtn.setOnClickListener {
             mTodoViewModel.create()
-            findNavController().navigate(R.id.action_addTodoFragment_to_todoListFragment)
+            addTodoNavigateBack()
         }
 
         return binding.root
+    }
+
+    private fun addTodoNavigateBack() {
+        if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            findNavController().navigate(R.id.action_addTodoFragment_to_todoListFragment)
+        } else {
+            findNavController().navigate(R.id.action_todoAddFragment_to_todoDetailFragment)
+        }
     }
 }

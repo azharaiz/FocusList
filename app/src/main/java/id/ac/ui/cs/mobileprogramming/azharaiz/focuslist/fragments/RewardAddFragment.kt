@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -27,8 +28,8 @@ class RewardAddFragment : Fragment() {
         binding.rewardViewModel = mRewardViewModel
 
         binding.btnAddReward.setOnClickListener {
-            findNavController().navigate(R.id.action_rewardAddFragment_to_rewardListFragment)
             mRewardViewModel.create()
+            addRewardNavigateBack()
         }
 
         binding.addRewardImage.setOnClickListener {
@@ -46,6 +47,14 @@ class RewardAddFragment : Fragment() {
                 val uri = data.data
                 mRewardViewModel.rewardImageUrl.value = uri.toString()
             }
+        }
+    }
+
+    private fun addRewardNavigateBack() {
+        if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            findNavController().navigate(R.id.action_rewardAddFragment_to_rewardListFragment)
+        } else {
+            findNavController().navigate(R.id.action_rewardAddFragment2_to_rewardDetailFragment)
         }
     }
 }
