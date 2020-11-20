@@ -39,6 +39,7 @@ class TodoDetailFragment : Fragment() {
         binding.buttonStartTimer.setOnClickListener {
             val intent = Intent(requireActivity(), TimerActivity::class.java)
             intent.putExtra("TODO_DURATION", mTodoViewModel.todoDuration.value)
+            intent.putExtra("TODO_TITLE", mTodoViewModel.todoTitle.value)
             startActivity(intent)
         }
 

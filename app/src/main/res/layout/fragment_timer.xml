@@ -95,28 +95,28 @@
             android:id="@+id/timerCountDown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:text="@{Converter.INSTANCE.toTimerMode(timerViewModel.timerTick)}"
             android:textSize="60sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnTimerStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/titleTimer" />
 
         <EditText
             android:id="@+id/timerDurationInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:autofillHints="Duration in minutes"
             android:ems="10"
             android:hint="@string/duration_minutes"
             android:inputType="textPersonName"
             android:text="@={Converter.INSTANCE.toString(timerViewModel.timerDuration)}"
-            app:layout_constraintBottom_toTopOf="@+id/btnTimerStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/timerCountDown" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/timerHistoryButton"
@@ -132,6 +132,20 @@
             android:tint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="@{timerViewModel.todoTitle}"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timerCountDown" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

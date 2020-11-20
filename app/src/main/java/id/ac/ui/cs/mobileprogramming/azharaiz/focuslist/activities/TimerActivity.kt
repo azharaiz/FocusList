@@ -12,6 +12,7 @@ class TimerActivity : BaseActivity() {
 
         mTimerViewModel = ViewModelProvider(this).get(TimerViewModel::class.java)
         intent.extras?.get("TODO_DURATION")?.let { mTimerViewModel.updateDuration(it as Int) }
+        intent.extras?.get("TODO_TITLE")?.let { mTimerViewModel.todoTitle.value = it as String }
     }
 
     override fun layoutId(): Int {

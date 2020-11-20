@@ -11,6 +11,8 @@ class TimerViewModel : ViewModel() {
     var timerStatusStopped: MutableLiveData<Boolean> = MutableLiveData(true)
     var timerStatusPaused: MutableLiveData<Boolean> = MutableLiveData(false)
 
+    var todoTitle: MutableLiveData<String> = MutableLiveData("")
+
     fun updateDuration(duration: Int) {
         timerDuration.value = duration
         timerTick.value = duration.times(60)
