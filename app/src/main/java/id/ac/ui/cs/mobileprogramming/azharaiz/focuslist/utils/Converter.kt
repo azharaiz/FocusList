@@ -12,6 +12,10 @@ object Converter {
         return "Duration: ${duration.toString()} minutes"
     }
 
+    fun toTimerMode(duration: Int): String {
+        return "${duration.div(60)}:00"
+    }
+
     fun toInt(string: String): Int {
         return if (string.isEmpty()) 0 else string.toInt()
     }

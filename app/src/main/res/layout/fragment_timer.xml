@@ -92,7 +92,7 @@
             android:id="@+id/timerCountDown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="25:00"
+            android:text="@{Converter.INSTANCE.toTimerMode(timerViewModel.timerTick)}"
             android:textSize="60sp"
             app:layout_constraintBottom_toTopOf="@+id/btnTimerStart"
             app:layout_constraintEnd_toEndOf="parent"
