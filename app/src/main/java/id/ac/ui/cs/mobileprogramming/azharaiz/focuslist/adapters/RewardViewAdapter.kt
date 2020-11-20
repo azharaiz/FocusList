@@ -2,18 +2,22 @@ package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Reward
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentRewardItemBinding
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardListFragmentDirections
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardStatusListener
 
-//import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardListFragmentDirections
-
-class RewardViewAdapter() :
+class RewardViewAdapter(private val rewardStatusListener: RewardStatusListener) :
     RecyclerView.Adapter<RewardViewAdapter.RewardViewHolder>() {
 
     private var rewardList = emptyList<Reward>()
 
-    class RewardViewHolder(fragmentRewardItemBinding: FragmentRewardItemBinding) :
+    class RewardViewHolder(
+        fragmentRewardItemBinding: FragmentRewardItemBinding,
+        val rewardStatusListener: RewardStatusListener
+    ) :
         RecyclerView.ViewHolder(fragmentRewardItemBinding.root) {
 
         private var binding: FragmentRewardItemBinding = fragmentRewardItemBinding
@@ -23,26 +27,27 @@ class RewardViewAdapter() :
             binding.executePendingBindings()
         }
 
-//        fun navigation(reward: Reward) {
-//            itemView.setOnClickListener {
-//                val action = RewardListFragmentDirections
-//                    .actionRewardListFragmentToRewardUpdateFragment(reward)
-//                itemView.findNavController().navigate(action)
-//            }
-//        }
+        fun navigation(reward: Reward) {
+            itemView.setOnClickListener {
+                rewardStatusListener.onRewardClicked(reward)
+                val action = RewardListFragmentDirections
+                    .actionRewardListFragmentToRewardUpdateFragment(reward)
+                itemView.findNavController().navigate(action)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RewardViewHolder {
         val view = LayoutInflater.from(parent.context)
         val itemBinding =
             FragmentRewardItemBinding.inflate(view, parent, false)
-        return RewardViewHolder(itemBinding)
+        return RewardViewHolder(itemBinding, rewardStatusListener)
     }
 
     override fun onBindViewHolder(holder: RewardViewHolder, position: Int) {
         val currentItem = rewardList[position]
         holder.bind(currentItem)
-//        holder.navigation(currentItem)
+        holder.navigation(currentItem)
     }
 
     override fun getItemCount() = rewardList.size

@@ -5,18 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.adapters.RewardViewAdapter
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Reward
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.RewardViewModel
 
-class RewardListFragment : Fragment() {
+class RewardListFragment : Fragment(), RewardStatusListener {
 
-    private lateinit var mRewardViewModel: RewardViewModel
+    private val mRewardViewModel: RewardViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,13 +30,12 @@ class RewardListFragment : Fragment() {
             view.findViewById<FloatingActionButton>(R.id.rewardFloatingAction)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.reward_list_recycler_view)
-        val adapter = RewardViewAdapter()
+        val adapter = RewardViewAdapter(this)
 
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
-        mRewardViewModel = ViewModelProvider(this).get(RewardViewModel::class.java)
 
         mRewardViewModel.readAllRewards.observe(viewLifecycleOwner, { rewards ->
             adapter.setData(rewards)
@@ -46,4 +46,12 @@ class RewardListFragment : Fragment() {
         }
         return view
     }
+
+    override fun onRewardClicked(reward: Reward) {
+        mRewardViewModel.updateData(reward)
+    }
+}
+
+interface RewardStatusListener {
+    fun onRewardClicked(reward: Reward)
 }
