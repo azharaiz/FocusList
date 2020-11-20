@@ -42,6 +42,12 @@ class RewardViewModel(application: Application) : AndroidViewModel(application) 
         clearData()
     }
 
+    fun updateData(reward: Reward) {
+        rewardId.value = reward.id
+        rewardTitle.value = reward.title
+        rewardDescription.value = reward.description
+    }
+
     fun update() {
         reward = Reward(rewardId.value!!, rewardTitle.value!!, rewardDescription.value!!)
         updateReward(reward)

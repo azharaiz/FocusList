@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentRewardUpdateBinding
@@ -14,9 +14,7 @@ import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.RewardViewMod
 
 class RewardUpdateFragment : Fragment() {
 
-//    private val args by navArgs<RewardUpdate>()
-
-    private lateinit var mRewardViewModel: RewardViewModel
+    private val mRewardViewModel: RewardViewModel by activityViewModels()
     private lateinit var binding: FragmentRewardUpdateBinding
 
     override fun onCreateView(
@@ -24,12 +22,6 @@ class RewardUpdateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRewardUpdateBinding.inflate(inflater, container, false)
-
-        mRewardViewModel = ViewModelProvider(this).get(RewardViewModel::class.java)
-
-//        mRewardViewModel.rewardId.value = args.currentReward.id
-//        mRewardViewModel.rewardTitle.value = args.currentReward.title
-//        mRewardViewModel.rewardDescription.value = args.currentReward.description
 
         binding.lifecycleOwner = requireActivity()
         binding.rewardViewModel = mRewardViewModel
