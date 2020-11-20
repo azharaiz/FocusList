@@ -2,7 +2,6 @@
 <layout>
 
     <data>
-
         <variable
             name="rewardViewModel"
             type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.RewardViewModel" />
@@ -42,6 +41,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/detailRewardImage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="20dp"
+                    app:imgUri="@{rewardViewModel.rewardImageUrl}"
+                    app:placeholder="@{@drawable/ic_upload_photo_placeholder}" />
+
 
                 <TextView
                     android:id="@+id/rewardDetailTitle"

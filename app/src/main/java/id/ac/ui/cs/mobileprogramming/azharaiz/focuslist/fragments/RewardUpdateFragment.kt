@@ -1,8 +1,10 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +46,22 @@ class RewardUpdateFragment : Fragment() {
             builder.create().show()
         }
 
+        binding.updateRewardImage.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, 20)
+        }
+
         return binding.root
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 20) {
+            if (data != null) {
+                val uri = data.data
+                mRewardViewModel.rewardImageUrl.value = uri.toString()
+            }
+        }
     }
 
     private fun navigateBack() {

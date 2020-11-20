@@ -20,6 +20,7 @@ class RewardViewModel(application: Application) : AndroidViewModel(application) 
     lateinit var rewardId: MutableLiveData<Int>
     lateinit var rewardTitle: MutableLiveData<String>
     lateinit var rewardDescription: MutableLiveData<String>
+    lateinit var rewardImageUrl: MutableLiveData<String>
 
     private lateinit var reward: Reward
 
@@ -34,10 +35,11 @@ class RewardViewModel(application: Application) : AndroidViewModel(application) 
         rewardId = MutableLiveData(0)
         rewardTitle = MutableLiveData("")
         rewardDescription = MutableLiveData("")
+        rewardImageUrl = MutableLiveData("")
     }
 
     fun create() {
-        reward = Reward(0, rewardTitle.value!!, rewardDescription.value!!)
+        reward = Reward(0, rewardTitle.value!!, rewardDescription.value!!, rewardImageUrl.value!!)
         addReward(reward)
         clearData()
     }
@@ -46,16 +48,27 @@ class RewardViewModel(application: Application) : AndroidViewModel(application) 
         rewardId.value = reward.id
         rewardTitle.value = reward.title
         rewardDescription.value = reward.description
+        rewardImageUrl.value = reward.imageUrl
     }
 
     fun update() {
-        reward = Reward(rewardId.value!!, rewardTitle.value!!, rewardDescription.value!!)
+        reward = Reward(
+            rewardId.value!!,
+            rewardTitle.value!!,
+            rewardDescription.value!!,
+            rewardImageUrl.value!!
+        )
         updateReward(reward)
         clearData()
     }
 
     fun delete() {
-        reward = Reward(rewardId.value!!, rewardTitle.value!!, rewardDescription.value!!)
+        reward = Reward(
+            rewardId.value!!,
+            rewardTitle.value!!,
+            rewardDescription.value!!,
+            rewardImageUrl.value!!
+        )
         deleteReward(reward)
         clearData()
     }
