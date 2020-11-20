@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,9 +10,7 @@
             type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.RewardViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.RewardAddFragment">
@@ -27,48 +27,56 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            android:padding="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/rewardAddTitle">
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddReward"
+            app:layout_constraintTop_toBottomOf="@+id/rewardAddTitle"
+            tools:layout_editor_absoluteX="0dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/addRewardImage"
-                android:layout_width="fill_parent"
-                android:layout_height="120dp"
-                android:layout_marginBottom="20dp"
-                app:imgUri="@{rewardViewModel.rewardImageUrl}"
-                app:placeholder="@{@drawable/ic_upload_photo_placeholder}" />
-
-            <EditText
-                android:id="@+id/inputRewardTitle"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:autofillHints="Reward Title"
-                android:backgroundTint="@color/main"
-                android:ems="10"
-                android:hint="@string/title"
-                android:inputType="textPersonName"
-                android:text="@={rewardViewModel.rewardTitle}" />
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-            <EditText
-                android:id="@+id/inputRewardDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="Description"
-                android:backgroundTint="@color/main"
-                android:ems="10"
-                android:gravity="top"
-                android:hint="@string/description"
-                android:inputType="textMultiLine"
-                android:maxLines="10"
-                android:minLines="4"
-                android:text="@={rewardViewModel.rewardDescription}" />
-        </LinearLayout>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/addRewardImage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="20dp"
+                    app:imgUri="@{rewardViewModel.rewardImageUrl}"
+                    app:placeholder="@{@drawable/ic_upload_photo_placeholder}" />
+
+                <EditText
+                    android:id="@+id/inputRewardTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:autofillHints="Reward Title"
+                    android:backgroundTint="@color/main"
+                    android:ems="10"
+                    android:hint="@string/title"
+                    android:inputType="textPersonName"
+                    android:text="@={rewardViewModel.rewardTitle}" />
+
+                <EditText
+                    android:id="@+id/inputRewardDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="Description"
+                    android:backgroundTint="@color/main"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:hint="@string/description"
+                    android:inputType="textMultiLine"
+                    android:maxLines="10"
+                    android:minLines="4"
+                    android:text="@={rewardViewModel.rewardDescription}" />
+            </LinearLayout>
+        </ScrollView>
 
         <Button
             android:id="@+id/btnAddReward"

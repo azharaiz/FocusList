@@ -45,7 +45,6 @@
         android:backgroundTint="@color/main"
         android:clickable="true"
         android:contentDescription="@string/todo_add"
-        android:elevation="7dp"
         android:focusable="true"
         android:onClick="clickAddTodo"
         android:tint="@color/white"
