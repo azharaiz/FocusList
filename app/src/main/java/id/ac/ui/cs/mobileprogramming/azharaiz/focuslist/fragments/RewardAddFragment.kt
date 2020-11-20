@@ -33,7 +33,7 @@ class RewardAddFragment : Fragment() {
 
         binding.addRewardImage.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, 100)
+            startActivityForResult(gallery, 20)
         }
 
         return binding.root
@@ -41,7 +41,7 @@ class RewardAddFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100) {
+        if (requestCode == 20) {
             if (data != null) {
                 val uri = data.data
                 mRewardViewModel.rewardImageUrl.value = uri.toString()
