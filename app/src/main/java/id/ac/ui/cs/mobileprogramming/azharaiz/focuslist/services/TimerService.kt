@@ -20,6 +20,8 @@ class TimerService : Service() {
     private val broadCastIntent: Intent = Intent()
     private val binder = TimerBinder()
 
+    private var todoTitle = ""
+
     enum class TimerStatus {
         Running, Paused, Stopped
     }
@@ -84,6 +86,10 @@ class TimerService : Service() {
         stopSelf()
     }
 
+    fun setTodoTitle(title: String) {
+        todoTitle = title
+    }
+
     fun getTimerStatus(): TimerStatus {
         return timerStatus
     }
@@ -99,7 +105,7 @@ class TimerService : Service() {
         val timerLog = TimerLog(
             0,
             (timeDurationInSeconds - timeRemainingInSeconds).toInt(),
-            "Hello World"
+            todoTitle
         )
         mTimerLogViewModel.insertTimerLog(timerLog)
     }

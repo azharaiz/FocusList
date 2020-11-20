@@ -56,6 +56,7 @@ class TimerFragment : Fragment() {
 
         view.btnTimerStart.setOnClickListener {
             if (mBound) {
+                mTimerViewModel.todoTitle.value?.let { it1 -> mService.setTodoTitle(it1) }
                 mService.setDuration(timerDurationInput.text.toString().toInt())
                 mService.startTimer()
             }
@@ -67,6 +68,7 @@ class TimerFragment : Fragment() {
                 mService.stopTimer()
             }
             mTimerViewModel.stop()
+            mTimerViewModel.todoTitle.value = ""
         }
 
         view.btnTimerPause.setOnClickListener {
@@ -101,6 +103,9 @@ class TimerFragment : Fragment() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 val timeRemaining = intent?.getIntExtra("TIME_REMAINING", 0)
                 mTimerViewModel.timerTick.value = timeRemaining
+                if (timeRemaining == 0) {
+                    mTimerViewModel.stop()
+                }
             }
         }
 
