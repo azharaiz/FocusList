@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.adapters
 
+import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -30,9 +31,11 @@ class RewardViewAdapter(private val rewardStatusListener: RewardStatusListener) 
         fun navigation(reward: Reward) {
             itemView.setOnClickListener {
                 rewardStatusListener.onRewardClicked(reward)
-                val action = RewardListFragmentDirections
-                    .actionRewardListFragmentToRewardUpdateFragment(reward)
-                itemView.findNavController().navigate(action)
+                if (rewardStatusListener.checkOrientation() == Configuration.ORIENTATION_PORTRAIT) {
+                    val action = RewardListFragmentDirections
+                        .actionRewardListFragmentToRewardUpdateFragment(reward)
+                    itemView.findNavController().navigate(action)
+                }
             }
         }
     }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_reward_detail"
+    app:startDestination="@id/rewardDetailFragment">
+
+    <fragment
+        android:id="@+id/rewardDetailFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardDetailFragment"
+        android:label="RewardDetailFragment">
+        <action
+            android:id="@+id/action_rewardDetailFragment_to_rewardUpdateFragment2"
+            app:destination="@id/rewardUpdateFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardUpdateFragment2"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardUpdateFragment"
+        android:label="RewardUpdateFragment">
+        <action
+            android:id="@+id/action_rewardUpdateFragment2_to_rewardDetailFragment"
+            app:destination="@id/rewardDetailFragment" />
+    </fragment>
+</navigation>
