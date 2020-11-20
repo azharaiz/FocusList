@@ -32,5 +32,6 @@
     <string name="description">Deskripsi</string>
     <string name="reward_update">Memperbarui Hadiah</string>
     <string name="reward_detail">Detail Reward</string>
-    <string name="edit">Edit</string>
+    <string name="edit">Ubah</string>
+    <string name="duration_minutes">Durasi (Menit)</string>
 </resources>

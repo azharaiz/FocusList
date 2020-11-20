@@ -34,7 +34,7 @@ class TodoViewAdapter(private val onTodoStatusListener: TodoStatusListener) :
                 todoStatusListener.onTodoClicked(todo)
                 if (todoStatusListener.checkOrientation() == Configuration.ORIENTATION_PORTRAIT) {
                     val action = TodoListFragmentDirections
-                        .actionTodoListFragmentToTodoUpdateFragment(todo)
+                        .actionTodoListFragmentToTodoDetailFragment2()
                     itemView.findNavController().navigate(action)
                 }
             }

@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+        <import type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.utils.Converter" />
         <variable
             name="todoViewModel"
             type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel" />
@@ -54,8 +55,22 @@
                 android:autofillHints="@string/todo_title"
                 android:backgroundTint="@color/main"
                 android:ems="10"
+                android:inputType="text"
                 android:text="@={todoViewModel.todoTitle}" />
         </LinearLayout>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="@string/duration_minutes"
+            android:inputType="time"
+            android:text="@={Converter.INSTANCE.toString(todoViewModel.todoDuration)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <Button
             android:id="@+id/updateTodoBtn"

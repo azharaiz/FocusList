@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,9 +25,15 @@ class TodoDetailFragment : Fragment() {
         binding.lifecycleOwner = requireActivity()
         binding.todoViewModel = mTodoViewModel
 
+
         binding.btnEditTodo.setOnClickListener {
-            findNavController().navigate(R.id.action_todoDetailFragment_to_todoUpdateFragment2)
+            if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                findNavController().navigate(R.id.action_todoDetailFragment_to_todoUpdateFragment2)
+            } else {
+                findNavController().navigate(R.id.action_todoDetailFragment2_to_todoUpdateFragment)
+            }
         }
+
 
         return binding.root
     }

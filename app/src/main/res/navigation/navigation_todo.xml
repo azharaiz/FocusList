@@ -13,8 +13,8 @@
             android:id="@+id/action_todoListFragment_to_addTodoFragment"
             app:destination="@id/addTodoFragment" />
         <action
-            android:id="@+id/action_todoListFragment_to_todoUpdateFragment"
-            app:destination="@id/todoUpdateFragment" />
+            android:id="@+id/action_todoListFragment_to_todoDetailFragment2"
+            app:destination="@id/todoDetailFragment2" />
     </fragment>
     <fragment
         android:id="@+id/addTodoFragment"
@@ -40,6 +40,17 @@
         <argument
             android:name="currentTodo"
             app:argType="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo" />
+    </fragment>
+    <fragment
+        android:id="@+id/todoDetailFragment2"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoDetailFragment"
+        android:label="TodoDetailFragment">
+        <action
+            android:id="@+id/action_todoDetailFragment2_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
+        <action
+            android:id="@+id/action_todoDetailFragment2_to_todoUpdateFragment"
+            app:destination="@id/todoUpdateFragment" />
     </fragment>
 
 </navigation>
