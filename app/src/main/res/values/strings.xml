@@ -35,4 +35,5 @@
     <string name="duration_minutes">Duration (Minutes)</string>
     <string name="todo_detail">Detail Todo</string>
     <string name="start_timer">Start Timer</string>
+    <string name="set_duration">Set Duration</string>
 </resources>

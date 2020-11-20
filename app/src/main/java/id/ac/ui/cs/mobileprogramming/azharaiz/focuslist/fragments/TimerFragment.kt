@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
+import adil.dev.lib.materialnumberpicker.dialog.NumberPickerDialog
 import android.content.*
 import android.os.Bundle
 import android.os.IBinder
@@ -15,6 +16,7 @@ import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.services.TimerService
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TimerViewModel
 import kotlinx.android.synthetic.main.fragment_timer.*
 import kotlinx.android.synthetic.main.fragment_timer.view.*
+
 
 class TimerFragment : Fragment() {
     private lateinit var mService: TimerService
@@ -69,6 +71,15 @@ class TimerFragment : Fragment() {
             }
             mTimerViewModel.stop()
             mTimerViewModel.todoTitle.value = ""
+        }
+
+        view.timerSetTimeButton.setOnClickListener {
+            val dialog = NumberPickerDialog(
+                requireActivity(), 0, 60
+            ) { value ->
+                mTimerViewModel.updateDuration(value)
+            }
+            dialog.show()
         }
 
         view.btnTimerPause.setOnClickListener {

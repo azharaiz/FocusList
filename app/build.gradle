@@ -39,6 +39,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.ch-muhammad-adil:MaterialPickerDialog:1.0.3'
+
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
