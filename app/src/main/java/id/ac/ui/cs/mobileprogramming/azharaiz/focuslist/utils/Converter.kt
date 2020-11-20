@@ -12,7 +12,7 @@ object Converter {
     }
 
     fun showDuration(duration: Int): String {
-        return "Duration: ${duration.toString()} minutes"
+        return if (duration == 0) "Duration: None" else "Duration: ${duration.toString()} minutes"
     }
 
     fun toTimerMode(duration: Int): String {

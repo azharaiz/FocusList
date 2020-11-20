@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
+import adil.dev.lib.materialnumberpicker.dialog.NumberPickerDialog
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,6 +31,15 @@ class TodoAddFragment : Fragment() {
         binding.addTodoBtn.setOnClickListener {
             mTodoViewModel.create()
             addTodoNavigateBack()
+        }
+
+        binding.addTodoSetDurationButton.setOnClickListener {
+            val dialog = NumberPickerDialog(
+                requireActivity(), 0, 60
+            ) { value ->
+                mTodoViewModel.todoDuration.value = value
+            }
+            dialog.show()
         }
 
         return binding.root
