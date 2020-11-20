@@ -30,4 +30,6 @@
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="reward_update">Update Reward</string>
+    <string name="reward_detail">Reward Detail</string>
+    <string name="edit">Edit</string>
 </resources>

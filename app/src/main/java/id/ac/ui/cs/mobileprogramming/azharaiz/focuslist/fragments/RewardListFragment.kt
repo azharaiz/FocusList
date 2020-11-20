@@ -50,8 +50,13 @@ class RewardListFragment : Fragment(), RewardStatusListener {
     override fun onRewardClicked(reward: Reward) {
         mRewardViewModel.updateData(reward)
     }
+
+    override fun checkOrientation(): Int {
+        return requireActivity().resources.configuration.orientation
+    }
 }
 
 interface RewardStatusListener {
     fun onRewardClicked(reward: Reward)
+    fun checkOrientation(): Int
 }

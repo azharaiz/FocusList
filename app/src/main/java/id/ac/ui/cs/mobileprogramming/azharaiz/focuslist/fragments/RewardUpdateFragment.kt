@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
 import android.app.AlertDialog
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,21 +29,29 @@ class RewardUpdateFragment : Fragment() {
 
         binding.btnUpdateReward.setOnClickListener {
             mRewardViewModel.update()
-            findNavController().navigate(R.id.action_rewardUpdateFragment_to_rewardListFragment)
+            navigateBack()
         }
 
         binding.btnDeleteReward.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
             builder.setPositiveButton("Yes") { _, _ ->
                 mRewardViewModel.delete()
-                findNavController().navigate(R.id.action_rewardUpdateFragment_to_rewardListFragment)
+                navigateBack()
             }
             builder.setNegativeButton("No") { _, _ -> }
             builder.setTitle("Delete ${mRewardViewModel.rewardTitle.value}?")
-            builder.setTitle("Are you sure you want to delete ${mRewardViewModel.rewardDescription.value}?")
+            builder.setTitle("Are you sure you want to delete ${mRewardViewModel.rewardTitle.value}?")
             builder.create().show()
         }
 
         return binding.root
+    }
+
+    private fun navigateBack() {
+        if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            findNavController().navigate(R.id.action_rewardUpdateFragment_to_rewardListFragment)
+        } else {
+            findNavController().navigate(R.id.action_rewardUpdateFragment2_to_rewardDetailFragment)
+        }
     }
 }
