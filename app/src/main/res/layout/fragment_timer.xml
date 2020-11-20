@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.utils.Converter" />
+
+        <import type="android.view.View" />
 
         <variable
             name="timerViewModel"
             type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TimerViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragment_timer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,6 +41,7 @@
             android:background="@drawable/button_default"
             android:text="@string/start"
             android:textColor="@color/white"
+            android:visibility="@{timerViewModel.timerStatusStopped ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/btnTimerStop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -53,7 +56,7 @@
             android:background="@drawable/button_resend"
             android:text="@string/pause"
             android:textColor="@color/main"
-            android:visibility="gone"
+            android:visibility="@{timerViewModel.timerStatusRunning ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/btnTimerStop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -68,7 +71,7 @@
             android:background="@drawable/button_default"
             android:text="@string/resume"
             android:textColor="@color/white"
-            android:visibility="gone"
+            android:visibility="@{timerViewModel.timerStatusPaused ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/btnTimerStop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

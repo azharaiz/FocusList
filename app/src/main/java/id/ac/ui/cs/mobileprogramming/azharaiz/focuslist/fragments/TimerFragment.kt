@@ -11,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentTimerBinding
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.helpers.TimerHelper
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.services.TimerService
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TimerViewModel
 import kotlinx.android.synthetic.main.fragment_timer.*
@@ -31,7 +30,6 @@ class TimerFragment : Fragment() {
             val binder = service as TimerService.TimerBinder
             mService = binder.getService()
             mBound = true
-            updateUI()
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
@@ -57,38 +55,29 @@ class TimerFragment : Fragment() {
         val view = binding.root
 
         view.btnTimerStart.setOnClickListener {
-            view.btnTimerStart.visibility = View.GONE
-            view.btnTimerPause.visibility = View.VISIBLE
-            view.btnTimerResume.visibility = View.GONE
-            view.timerDurationInput.visibility = View.GONE
             if (mBound) {
                 mService.setDuration(timerDurationInput.text.toString().toInt())
                 mService.startTimer()
             }
+            mTimerViewModel.start()
         }
 
         view.btnTimerStop.setOnClickListener {
             if (mBound) {
                 mService.stopTimer()
             }
-            btnTimerStart.visibility = View.VISIBLE
-            btnTimerPause.visibility = View.GONE
-            btnTimerResume.visibility = View.GONE
+            mTimerViewModel.stop()
         }
 
         view.btnTimerPause.setOnClickListener {
-            view.btnTimerStart.visibility = View.GONE
-            view.btnTimerPause.visibility = View.GONE
-            view.btnTimerResume.visibility = View.VISIBLE
+            mTimerViewModel.pause()
             if (mBound) {
                 mService.pauseTimer()
             }
         }
 
         view.btnTimerResume.setOnClickListener {
-            view.btnTimerStart.visibility = View.GONE
-            view.btnTimerPause.visibility = View.VISIBLE
-            view.btnTimerResume.visibility = View.GONE
+            mTimerViewModel.start()
             if (mBound) {
                 mService.resumeTimer()
             }
@@ -111,12 +100,7 @@ class TimerFragment : Fragment() {
         runningReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 val timeRemaining = intent?.getIntExtra("TIME_REMAINING", 0)
-                timerCountDown.text = timeRemaining?.let { TimerHelper.displayTimer(it) }
-                if (timeRemaining == 0) {
-                    btnTimerStart.visibility = View.VISIBLE
-                    btnTimerPause.visibility = View.GONE
-                    btnTimerResume.visibility = View.GONE
-                }
+                mTimerViewModel.timerTick.value = timeRemaining
             }
         }
 
@@ -130,30 +114,5 @@ class TimerFragment : Fragment() {
             mBound = false
         }
         requireActivity().unregisterReceiver(runningReceiver)
-    }
-
-    private fun updateUI() {
-        if (mBound) {
-            when (mService.getTimerStatus()) {
-                TimerService.TimerStatus.Paused -> {
-                    btnTimerStart.visibility = View.GONE
-                    btnTimerPause.visibility = View.GONE
-                    btnTimerResume.visibility = View.VISIBLE
-                }
-
-                TimerService.TimerStatus.Running -> {
-                    btnTimerStart.visibility = View.GONE
-                    btnTimerPause.visibility = View.VISIBLE
-                    btnTimerResume.visibility = View.GONE
-                    timerDurationInput.visibility = View.GONE
-                }
-
-                TimerService.TimerStatus.Stopped -> {
-                    btnTimerStart.visibility = View.VISIBLE
-                    btnTimerPause.visibility = View.GONE
-                    btnTimerResume.visibility = View.GONE
-                }
-            }
-        }
     }
 }
