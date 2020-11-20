@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
+import adil.dev.lib.materialnumberpicker.dialog.NumberPickerDialog
 import android.app.AlertDialog
 import android.content.res.Configuration
 import android.os.Bundle
@@ -52,6 +53,16 @@ class TodoUpdateFragment : Fragment() {
             builder.setTitle("Are you sure you want to delete ${mTodoViewModel.todoTitle.value}?")
             builder.create().show()
         }
+
+        binding.updateTodoSetDurationButton.setOnClickListener {
+            val dialog = NumberPickerDialog(
+                requireActivity(), 0, 60
+            ) { value ->
+                mTodoViewModel.todoDuration.value = value
+            }
+            dialog.show()
+        }
+
         return binding.root
     }
 

@@ -1,7 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,6 +10,7 @@ import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.repositories.TodoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 
 class TodoViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -21,6 +21,8 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
     lateinit var todoId: MutableLiveData<Int>
     lateinit var todoTitle: MutableLiveData<String>
     lateinit var todoStatus: MutableLiveData<Boolean>
+    lateinit var todoDuration: MutableLiveData<Int>
+    var todoDate: MutableLiveData<Date>? = null
 
     private lateinit var todo: Todo
 
@@ -28,7 +30,6 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         val todoDao = AppDatabase.getDatabase(application).todoDao()
         repository = TodoRepository(todoDao)
         readAllTodos = repository.readAllTodos
-        Log.i(TAG, "Start")
         clearData()
     }
 
@@ -36,31 +37,49 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         todoId.value = todo.id
         todoTitle.value = todo.title
         todoStatus.value = todo.status
-        logForm("update_data")
+        todoDuration.value = todo.duration
     }
 
     fun clearData() {
         todoId = MutableLiveData(0)
         todoTitle = MutableLiveData("")
         todoStatus = MutableLiveData(false)
-        Log.i(TAG, "Clear data")
+        todoDuration = MutableLiveData(0)
+        todoDate = MutableLiveData(Date())
     }
 
     fun create() {
-        todo = Todo(0, todoTitle.value!!, todoStatus.value!!)
+        todo = Todo(
+            0,
+            todoTitle.value!!,
+            todoStatus.value!!,
+            todoDuration.value!!,
+            todoDate?.value!!
+        )
         addTodo(todo)
         clearData()
     }
 
     fun update() {
-        logForm("update")
-        todo = Todo(todoId.value!!, todoTitle.value!!, todoStatus.value!!)
+        todo = Todo(
+            todoId.value!!,
+            todoTitle.value!!,
+            todoStatus.value!!,
+            todoDuration.value!!,
+            todoDate?.value!!
+        )
         updateTodo(todo)
         clearData()
     }
 
     fun delete() {
-        todo = Todo(todoId.value!!, todoTitle.value!!, todoStatus.value!!)
+        todo = Todo(
+            todoId.value!!,
+            todoTitle.value!!,
+            todoStatus.value!!,
+            todoDuration.value!!,
+            todoDate?.value!!
+        )
         deleteTodo(todo)
         clearData()
     }
@@ -79,9 +98,5 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
 
     fun deleteAllTodo() {
         viewModelScope.launch { repository.deleteAllTodo() }
-    }
-
-    fun logForm(status: String) {
-        Log.i(TAG, "${status} ${todoId.value!!} ${todoTitle.value!!} ${todoStatus.value!!}")
     }
 }

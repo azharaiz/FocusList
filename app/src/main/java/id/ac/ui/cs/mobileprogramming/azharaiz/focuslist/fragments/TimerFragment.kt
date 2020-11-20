@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
+import adil.dev.lib.materialnumberpicker.dialog.NumberPickerDialog
 import android.content.*
 import android.os.Bundle
 import android.os.IBinder
@@ -7,12 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.helpers.TimerHelper
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentTimerBinding
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.services.TimerService
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TimerViewModel
 import kotlinx.android.synthetic.main.fragment_timer.*
 import kotlinx.android.synthetic.main.fragment_timer.view.*
+
 
 class TimerFragment : Fragment() {
     private lateinit var mService: TimerService
@@ -20,12 +24,14 @@ class TimerFragment : Fragment() {
 
     private lateinit var runningReceiver: BroadcastReceiver
 
+    private lateinit var binding: FragmentTimerBinding
+    private val mTimerViewModel: TimerViewModel by activityViewModels()
+
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             val binder = service as TimerService.TimerBinder
             mService = binder.getService()
             mBound = true
-            updateUI()
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
@@ -44,41 +50,47 @@ class TimerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_timer, container, false)
+        binding = FragmentTimerBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = requireActivity()
+        binding.timerViewModel = mTimerViewModel
+
+        val view = binding.root
 
         view.btnTimerStart.setOnClickListener {
-            view.btnTimerStart.visibility = View.GONE
-            view.btnTimerPause.visibility = View.VISIBLE
-            view.btnTimerResume.visibility = View.GONE
-            view.timerDurationInput.visibility = View.GONE
             if (mBound) {
+                mTimerViewModel.todoTitle.value?.let { it1 -> mService.setTodoTitle(it1) }
                 mService.setDuration(timerDurationInput.text.toString().toInt())
                 mService.startTimer()
             }
+            mTimerViewModel.start()
         }
 
         view.btnTimerStop.setOnClickListener {
             if (mBound) {
                 mService.stopTimer()
             }
-            btnTimerStart.visibility = View.VISIBLE
-            btnTimerPause.visibility = View.GONE
-            btnTimerResume.visibility = View.GONE
+            mTimerViewModel.stop()
+            mTimerViewModel.todoTitle.value = ""
+        }
+
+        view.timerSetTimeButton.setOnClickListener {
+            val dialog = NumberPickerDialog(
+                requireActivity(), 0, 60
+            ) { value ->
+                mTimerViewModel.updateDuration(value)
+            }
+            dialog.show()
         }
 
         view.btnTimerPause.setOnClickListener {
-            view.btnTimerStart.visibility = View.GONE
-            view.btnTimerPause.visibility = View.GONE
-            view.btnTimerResume.visibility = View.VISIBLE
+            mTimerViewModel.pause()
             if (mBound) {
                 mService.pauseTimer()
             }
         }
 
         view.btnTimerResume.setOnClickListener {
-            view.btnTimerStart.visibility = View.GONE
-            view.btnTimerPause.visibility = View.VISIBLE
-            view.btnTimerResume.visibility = View.GONE
+            mTimerViewModel.start()
             if (mBound) {
                 mService.resumeTimer()
             }
@@ -101,11 +113,9 @@ class TimerFragment : Fragment() {
         runningReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 val timeRemaining = intent?.getIntExtra("TIME_REMAINING", 0)
-                timerCountDown.text = timeRemaining?.let { TimerHelper.displayTimer(it) }
+                mTimerViewModel.timerTick.value = timeRemaining
                 if (timeRemaining == 0) {
-                    btnTimerStart.visibility = View.VISIBLE
-                    btnTimerPause.visibility = View.GONE
-                    btnTimerResume.visibility = View.GONE
+                    mTimerViewModel.stop()
                 }
             }
         }
@@ -120,30 +130,5 @@ class TimerFragment : Fragment() {
             mBound = false
         }
         requireActivity().unregisterReceiver(runningReceiver)
-    }
-
-    private fun updateUI() {
-        if (mBound) {
-            when (mService.getTimerStatus()) {
-                TimerService.TimerStatus.Paused -> {
-                    btnTimerStart.visibility = View.GONE
-                    btnTimerPause.visibility = View.GONE
-                    btnTimerResume.visibility = View.VISIBLE
-                }
-
-                TimerService.TimerStatus.Running -> {
-                    btnTimerStart.visibility = View.GONE
-                    btnTimerPause.visibility = View.VISIBLE
-                    btnTimerResume.visibility = View.GONE
-                    timerDurationInput.visibility = View.GONE
-                }
-
-                TimerService.TimerStatus.Stopped -> {
-                    btnTimerStart.visibility = View.VISIBLE
-                    btnTimerPause.visibility = View.GONE
-                    btnTimerResume.visibility = View.GONE
-                }
-            }
-        }
     }
 }

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.utils.Converter" />
+
         <variable
             name="todoViewModel"
             type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.TodoUpdateFragment">
@@ -26,36 +29,65 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="32dp"
-            android:orientation="horizontal"
-            android:padding="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/updateTodoBtn"
             app:layout_constraintTop_toBottomOf="@+id/titleUpdateTodo">
 
-            <CheckBox
-                android:id="@+id/updateTodoCheckbox"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/main"
-                android:checked="@={todoViewModel.todoStatus}" />
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/updateTodoTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:autofillHints="@string/todo_title"
-                android:backgroundTint="@color/main"
-                android:ems="10"
-                android:text="@={todoViewModel.todoTitle}" />
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <CheckBox
+                        android:id="@+id/updateTodoCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/main"
+                        android:checked="@={todoViewModel.todoStatus}" />
+
+                    <EditText
+                        android:id="@+id/updateTodoTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:autofillHints="@string/todo_title"
+                        android:backgroundTint="@color/main"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:text="@={todoViewModel.todoTitle}" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="32dp"
+                    android:text="@{Converter.INSTANCE.showDuration(todoViewModel.todoDuration)}"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/updateTodoSetDurationButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/set_duration" />
+            </LinearLayout>
+        </ScrollView>
+
 
         <Button
             android:id="@+id/updateTodoBtn"

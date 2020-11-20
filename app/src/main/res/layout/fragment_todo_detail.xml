@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.utils.Converter" />
         <variable
             name="todoViewModel"
             type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel" />
@@ -19,13 +19,14 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="24dp"
-            android:text="Edit"
+            android:text="@string/edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -38,14 +39,14 @@
 
             <TextView
                 android:id="@+id/detailTodoTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:autofillHints="@string/todo_title"
                 android:backgroundTint="@color/main"
                 android:ems="10"
                 android:text="@{todoViewModel.todoTitle}"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
         </LinearLayout>
 
         <TextView
@@ -54,11 +55,36 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:text="Detail Todo"
+            android:text="@string/todo_detail"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@{Converter.INSTANCE.showDuration(todoViewModel.todoDuration)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+        <Button
+            android:id="@+id/buttonStartTimer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_default"
+            android:text="@string/start_timer"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/btnEditTodo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
