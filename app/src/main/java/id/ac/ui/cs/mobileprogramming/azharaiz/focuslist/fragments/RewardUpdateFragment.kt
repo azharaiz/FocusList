@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentRewardUpdateBinding
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.RewardViewModel
 
 class RewardUpdateFragment : Fragment() {
 
-    private val args by navArgs<RewardUpdateFragmentArgs>()
+//    private val args by navArgs<RewardUpdate>()
 
     private lateinit var mRewardViewModel: RewardViewModel
     private lateinit var binding: FragmentRewardUpdateBinding
@@ -28,9 +27,9 @@ class RewardUpdateFragment : Fragment() {
 
         mRewardViewModel = ViewModelProvider(this).get(RewardViewModel::class.java)
 
-        mRewardViewModel.rewardId.value = args.currentReward.id
-        mRewardViewModel.rewardTitle.value = args.currentReward.title
-        mRewardViewModel.rewardDescription.value = args.currentReward.description
+//        mRewardViewModel.rewardId.value = args.currentReward.id
+//        mRewardViewModel.rewardTitle.value = args.currentReward.title
+//        mRewardViewModel.rewardDescription.value = args.currentReward.description
 
         binding.lifecycleOwner = requireActivity()
         binding.rewardViewModel = mRewardViewModel

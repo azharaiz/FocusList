@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class TodoViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val TAG: String = "TODO_VIEW_MODEL"
     val readAllTodos: LiveData<List<Todo>>
     private val repository: TodoRepository
 
@@ -26,13 +28,22 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         val todoDao = AppDatabase.getDatabase(application).todoDao()
         repository = TodoRepository(todoDao)
         readAllTodos = repository.readAllTodos
+        Log.i(TAG, "Start")
         clearData()
+    }
+
+    fun updateData(todo: Todo) {
+        todoId.value = todo.id
+        todoTitle.value = todo.title
+        todoStatus.value = todo.status
+        logForm("update_data")
     }
 
     fun clearData() {
         todoId = MutableLiveData(0)
         todoTitle = MutableLiveData("")
         todoStatus = MutableLiveData(false)
+        Log.i(TAG, "Clear data")
     }
 
     fun create() {
@@ -42,6 +53,7 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun update() {
+        logForm("update")
         todo = Todo(todoId.value!!, todoTitle.value!!, todoStatus.value!!)
         updateTodo(todo)
         clearData()
@@ -67,5 +79,9 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
 
     fun deleteAllTodo() {
         viewModelScope.launch { repository.deleteAllTodo() }
+    }
+
+    fun logForm(status: String) {
+        Log.i(TAG, "${status} ${todoId.value!!} ${todoTitle.value!!} ${todoStatus.value!!}")
     }
 }

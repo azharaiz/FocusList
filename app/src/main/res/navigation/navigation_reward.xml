@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/focus_list_nav"
+    app:startDestination="@id/rewardListFragment">
+    <fragment
+        android:id="@+id/rewardListFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardListFragment"
+        android:label="fragment_reward_list"
+        tools:layout="@layout/fragment_reward_list">
+        <action
+            android:id="@+id/action_rewardListFragment_to_rewardAddFragment"
+            app:destination="@id/rewardAddFragment" />
+        <action
+            android:id="@+id/action_rewardListFragment_to_rewardUpdateFragment"
+            app:destination="@id/rewardUpdateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardAddFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardAddFragment"
+        android:label="RewardAddFragment">
+        <action
+            android:id="@+id/action_rewardAddFragment_to_rewardListFragment"
+            app:destination="@id/rewardListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardUpdateFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.RewardUpdateFragment"
+        android:label="RewardUpdateFragment">
+        <action
+            android:id="@+id/action_rewardUpdateFragment_to_rewardListFragment"
+            app:destination="@id/rewardListFragment" />
+        <argument
+            android:name="currentReward"
+            app:argType="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Reward" />
+    </fragment>
+</navigation>

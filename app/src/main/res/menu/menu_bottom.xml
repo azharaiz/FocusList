@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/todoListFragment"
+        android:id="@+id/action_todo"
         android:icon="@drawable/ic_todo_checkbox"
         android:iconTint="@color/main"
-        android:title="@string/todo" />
+        android:enabled="true"
+        android:title="@string/todo"
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/rewardListFragment"
+        android:id="@+id/action_reward"
         android:icon="@drawable/ic_star"
         android:iconTint="@color/main"
-        android:title="@string/reward" />
+        android:enabled="true"
+        android:title="@string/reward"
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/timerFragment"
+        android:id="@+id/action_timer"
         android:icon="@drawable/ic_timer"
         android:iconTint="@color/main"
-        android:title="@string/timer" />
+        android:enabled="true"
+        android:title="@string/timer"
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/settingsFragment"
+        android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings"
         android:iconTint="@color/main"
-        android:title="@string/settings" />
+        android:enabled="true"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -3,30 +3,18 @@ package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 
-class MainActivity : AppCompatActivity() {
+class TodoActivity : BaseActivity() {
+    private val TAG = "MAIN_ACTIVITY"
 
     private lateinit var auth: FirebaseAuth
-    private val TAG = "MAIN_ACTIVITY"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val bottomNavigationView =
-            findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        val navController = findNavController(R.id.fragment)
-
-        bottomNavigationView.setupWithNavController(navController)
-
         auth = Firebase.auth
     }
 
@@ -38,6 +26,14 @@ class MainActivity : AppCompatActivity() {
         } else {
             openLoginPage()
         }
+    }
+
+    override fun layoutId(): Int {
+        return R.layout.activity_todo
+    }
+
+    override fun actionId(): Int {
+        return R.id.action_todo
     }
 
     fun openLoginPage() {
