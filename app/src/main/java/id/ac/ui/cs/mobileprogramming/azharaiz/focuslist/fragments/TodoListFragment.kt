@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,13 +20,13 @@ class TodoListFragment : Fragment(), TodoStatusListener {
 
     private val TAG = "TODO_LIST_FRAGMENT"
 
-    private lateinit var mTodoViewModel: TodoViewModel
+    private val mTodoViewModel: TodoViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_todo_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_todo_list, container, false)
         val btnAdd = view.findViewById<FloatingActionButton>(R.id.btnAdd)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.todo_list_recycler_view)
@@ -35,8 +35,6 @@ class TodoListFragment : Fragment(), TodoStatusListener {
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-
-        mTodoViewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
 
         mTodoViewModel.readAllTodos.observe(viewLifecycleOwner, { todos ->
             adapter.setData(todos)
@@ -48,13 +46,32 @@ class TodoListFragment : Fragment(), TodoStatusListener {
         return view
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.i(TAG, "START")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i(TAG, "DESTROY")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i(TAG, "STOP")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i(TAG, "RESUME")
+    }
+
     override fun onTodoStatusUpdate(todo: Todo) {
         mTodoViewModel.updateTodo(todo)
     }
 
     override fun onTodoClicked(todo: Todo) {
         mTodoViewModel.updateData(todo)
-        Log.i(TAG, mTodoViewModel.todoTitle.value.toString())
     }
 
     override fun checkOrientation(): Int {

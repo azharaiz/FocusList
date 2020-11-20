@@ -9,17 +9,12 @@ import com.google.firebase.ktx.Firebase
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 
 class TodoActivity : BaseActivity() {
+    private val TAG = "MAIN_ACTIVITY"
 
     private lateinit var auth: FirebaseAuth
-    private val TAG = "MAIN_ACTIVITY"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        findViewById<FloatingActionButton>(R.id.btnAdd).setOnClickListener {
-//            findNavController(this).navigate()
-//        }
-
         auth = Firebase.auth
     }
 

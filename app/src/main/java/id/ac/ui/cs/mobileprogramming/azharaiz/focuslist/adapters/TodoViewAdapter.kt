@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_todo_item.view.*
 class TodoViewAdapter(private val onTodoStatusListener: TodoStatusListener) :
     RecyclerView.Adapter<TodoViewAdapter.TodoViewHolder>() {
 
-    private val TAG = "RECYCLER_VIEW"
+    private val TAG = "TODO_ADAPTER"
 
     private var todoList = emptyList<Todo>()
 
@@ -43,7 +43,7 @@ class TodoViewAdapter(private val onTodoStatusListener: TodoStatusListener) :
         holder.itemView.findViewById<LinearLayout>(R.id.todo_item).setOnClickListener {
             when (onTodoStatusListener.checkOrientation()) {
                 Configuration.ORIENTATION_PORTRAIT -> {
-                    Log.i(TAG, "Hello")
+                    Log.i(TAG, "Orientation Potrait")
                     val action =
                         TodoListFragmentDirections.actionTodoListFragmentToTodoUpdateFragment(
                             currentItem
@@ -51,7 +51,7 @@ class TodoViewAdapter(private val onTodoStatusListener: TodoStatusListener) :
                     holder.itemView.findNavController().navigate(action)
                 }
             }
-            Log.i(TAG, "World")
+            Log.i(TAG, "Orientation Landscape")
             onTodoStatusListener.onTodoClicked(currentItem)
         }
 

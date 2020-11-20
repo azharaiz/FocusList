@@ -54,8 +54,6 @@
                 android:autofillHints="@string/todo_title"
                 android:backgroundTint="@color/main"
                 android:ems="10"
-                android:hint="@string/todo_title"
-                android:inputType="textPersonName"
                 android:text="@={todoViewModel.todoTitle}" />
         </LinearLayout>
 
