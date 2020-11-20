@@ -6,17 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentTodoDetailBinding
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel
 
 class TodoDetailFragment : Fragment() {
-    private val model: TodoViewModel by activityViewModels()
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_todo_detail, container, false)
-    }
+    private lateinit var binding: FragmentTodoDetailBinding
+    private val mTodoViewModel: TodoViewModel by activityViewModels()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentTodoDetailBinding.inflate(inflater, container, false)
+
+        binding.lifecycleOwner = requireActivity()
+        binding.todoViewModel = mTodoViewModel
+
+        binding.btnEditTodo.setOnClickListener {
+            findNavController().navigate(R.id.action_todoDetailFragment_to_todoUpdateFragment2)
+        }
+
+        return binding.root
     }
 }

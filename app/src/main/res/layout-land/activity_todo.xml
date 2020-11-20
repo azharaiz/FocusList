@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.TodoActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,12 +24,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_todo_update"
-            android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoUpdateFragment"
+        <fragment
+            android:id="@+id/fragment6"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation_todo_detail" />
+
     </LinearLayout>
 
     <include

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_todo_detail"
+    app:startDestination="@id/todoDetailFragment">
+
+    <fragment
+        android:id="@+id/todoDetailFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoDetailFragment"
+        android:label="TodoDetailFragment">
+        <action
+            android:id="@+id/action_todoDetailFragment_to_todoUpdateFragment2"
+            app:destination="@id/todoUpdateFragmentLandScape" />
+    </fragment>
+    <fragment
+        android:id="@+id/todoUpdateFragmentLandScape"
+        android:name="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoUpdateFragment"
+        android:label="TodoUpdateFragment">
+        <action
+            android:id="@+id/action_todoUpdateFragment2_to_todoDetailFragment"
+            app:destination="@id/todoDetailFragment" />
+    </fragment>
+</navigation>

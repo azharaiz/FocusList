@@ -39,8 +39,9 @@ class TodoUpdateFragment : Fragment() {
             Toast.makeText(requireContext(), "Update success", Toast.LENGTH_SHORT).show()
             Log.i(TAG, mTodoViewModel.todoTitle.value.toString())
             if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                mTodoViewModel.update()
                 findNavController().navigate(R.id.action_todoUpdateFragment_to_todoListFragment)
+            } else {
+                findNavController().navigate(R.id.action_todoUpdateFragment2_to_todoDetailFragment)
             }
             Log.i(TAG, mTodoViewModel.todoTitle.value.toString())
         }
