@@ -13,16 +13,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.RewardUpdateFragment">
+        tools:context=".fragments.RewardAddFragment">
 
         <TextView
-            android:id="@+id/rewardUpdateTitle"
+            android:id="@+id/rewardAddTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:text="@string/reward_update"
-            android:textSize="30sp"
+            android:text="@string/reward_add"
+            android:textSize="50sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,26 +30,28 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_update_reward"
-            app:layout_constraintTop_toBottomOf="@+id/rewardUpdateTitle"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddReward"
+            app:layout_constraintTop_toBottomOf="@+id/rewardAddTitle"
             tools:layout_editor_absoluteX="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical"
                 android:padding="20dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/updateRewardImage"
+                    android:id="@+id/addRewardImage"
                     android:layout_width="fill_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="120dp"
                     android:layout_marginBottom="20dp"
                     app:imgUri="@{rewardViewModel.rewardImageUrl}"
                     app:placeholder="@{@drawable/ic_upload_photo_placeholder}" />
 
                 <EditText
-                    android:id="@+id/inputRewardUpdateTitle"
+                    android:id="@+id/inputRewardTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
@@ -58,10 +60,11 @@
                     android:ems="10"
                     android:hint="@string/title"
                     android:inputType="textPersonName"
-                    android:text="@={rewardViewModel.rewardTitle}" />
+                    android:text="@={rewardViewModel.rewardTitle}"
+                    android:textSize="24sp" />
 
                 <EditText
-                    android:id="@+id/inputRewardUpdateDescription"
+                    android:id="@+id/inputRewardDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:autofillHints="Description"
@@ -72,40 +75,24 @@
                     android:inputType="textMultiLine"
                     android:maxLines="10"
                     android:minLines="4"
-                    android:text="@={rewardViewModel.rewardDescription}" />
+                    android:text="@={rewardViewModel.rewardDescription}"
+                    android:textSize="24sp" />
             </LinearLayout>
         </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/bottom_update_reward"
+        <Button
+            android:id="@+id/btnAddReward"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_default"
+            android:text="@string/add"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <Button
-                android:id="@+id/btnUpdateReward"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_default"
-                android:text="@string/update"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/btnDeleteReward"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_danger"
-                android:text="@string/delete"
-                android:textColor="@color/white" />
-        </LinearLayout>
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
