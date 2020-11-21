@@ -2,6 +2,7 @@ package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
 import adil.dev.lib.materialnumberpicker.dialog.NumberPickerDialog
 import android.content.*
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.IBinder
 import android.view.LayoutInflater
@@ -56,21 +57,67 @@ class TimerFragment : Fragment() {
 
         val view = binding.root
 
-        view.btnTimerStart.setOnClickListener {
-            if (mBound) {
-                mTimerViewModel.todoTitle.value?.let { it1 -> mService.setTodoTitle(it1) }
-                mService.setDuration(timerDurationInput.text.toString().toInt())
-                mService.startTimer()
+        if (requireActivity().resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            view.btnTimerStart.setOnClickListener {
+                if (mBound) {
+                    mTimerViewModel.todoTitle.value?.let { it1 -> mService.setTodoTitle(it1) }
+                    mService.setDuration(timerDurationInput.text.toString().toInt())
+                    mService.startTimer()
+                }
+                mTimerViewModel.start()
             }
-            mTimerViewModel.start()
-        }
 
-        view.btnTimerStop.setOnClickListener {
-            if (mBound) {
-                mService.stopTimer()
+            view.btnTimerStop.setOnClickListener {
+                if (mBound) {
+                    mService.stopTimer()
+                }
+                mTimerViewModel.stop()
+                mTimerViewModel.todoTitle.value = ""
             }
-            mTimerViewModel.stop()
-            mTimerViewModel.todoTitle.value = ""
+
+            view.btnTimerPause.setOnClickListener {
+                mTimerViewModel.pause()
+                if (mBound) {
+                    mService.pauseTimer()
+                }
+            }
+
+            view.btnTimerResume.setOnClickListener {
+                mTimerViewModel.start()
+                if (mBound) {
+                    mService.resumeTimer()
+                }
+            }
+        } else {
+            view.btnTimerPauseFloat.setOnClickListener {
+                mTimerViewModel.pause()
+                if (mBound) {
+                    mService.pauseTimer()
+                }
+            }
+
+            view.btnTimerResumeFloat.setOnClickListener {
+                mTimerViewModel.start()
+                if (mBound) {
+                    mService.resumeTimer()
+                }
+            }
+
+            view.btnTimerStopFloat.setOnClickListener {
+                if (mBound) {
+                    mService.stopTimer()
+                }
+                mTimerViewModel.stop()
+                mTimerViewModel.todoTitle.value = ""
+            }
+            view.btnTimerStartFloat.setOnClickListener {
+                if (mBound) {
+                    mTimerViewModel.todoTitle.value?.let { it1 -> mService.setTodoTitle(it1) }
+                    mService.setDuration(timerDurationInput.text.toString().toInt())
+                    mService.startTimer()
+                }
+                mTimerViewModel.start()
+            }
         }
 
         view.timerSetTimeButton.setOnClickListener {
@@ -80,20 +127,6 @@ class TimerFragment : Fragment() {
                 mTimerViewModel.updateDuration(value)
             }
             dialog.show()
-        }
-
-        view.btnTimerPause.setOnClickListener {
-            mTimerViewModel.pause()
-            if (mBound) {
-                mService.pauseTimer()
-            }
-        }
-
-        view.btnTimerResume.setOnClickListener {
-            mTimerViewModel.start()
-            if (mBound) {
-                mService.resumeTimer()
-            }
         }
 
         view.timerHistoryButton.setOnClickListener {
