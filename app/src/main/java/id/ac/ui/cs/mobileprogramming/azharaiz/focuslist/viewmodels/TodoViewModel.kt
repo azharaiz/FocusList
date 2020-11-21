@@ -38,6 +38,7 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         todoTitle.value = todo.title
         todoStatus.value = todo.status
         todoDuration.value = todo.duration
+        println(todoStatus.value)
     }
 
     fun clearData() {
@@ -68,6 +69,7 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
             todoDuration.value!!,
             todoDate?.value!!
         )
+        println(todoStatus.value)
         updateTodo(todo)
         clearData()
     }

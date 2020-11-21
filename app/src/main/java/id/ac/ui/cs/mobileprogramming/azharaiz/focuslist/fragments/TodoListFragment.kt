@@ -2,7 +2,6 @@ package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,28 +48,9 @@ class TodoListFragment : Fragment(), TodoStatusListener {
         return view
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.i(TAG, "START")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i(TAG, "DESTROY")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.i(TAG, "STOP")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i(TAG, "RESUME")
-    }
-
     override fun onTodoStatusUpdate(todo: Todo) {
-        mTodoViewModel.updateTodo(todo)
+        mTodoViewModel.updateData(todo)
+        mTodoViewModel.delete()
     }
 
     override fun onTodoClicked(todo: Todo) {

@@ -9,6 +9,7 @@ import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.Todo
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentTodoItemBinding
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoListFragmentDirections
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments.TodoStatusListener
+import kotlinx.android.synthetic.main.fragment_todo_item.view.*
 
 
 class TodoViewAdapter(private val onTodoStatusListener: TodoStatusListener) :
@@ -30,13 +31,16 @@ class TodoViewAdapter(private val onTodoStatusListener: TodoStatusListener) :
         }
 
         fun navigation(todo: Todo) {
-            itemView.setOnClickListener {
+            itemView.todoItemText.setOnClickListener {
                 todoStatusListener.onTodoClicked(todo)
                 if (todoStatusListener.checkOrientation() == Configuration.ORIENTATION_PORTRAIT) {
                     val action = TodoListFragmentDirections
                         .actionTodoListFragmentToTodoDetailFragment2()
                     itemView.findNavController().navigate(action)
                 }
+            }
+            itemView.checkBox.setOnClickListener {
+                todoStatusListener.onTodoStatusUpdate(todo)
             }
         }
 
