@@ -43,4 +43,5 @@
     <string name="MPD_female">Wanita</string>
     <string name="MPD_empty_message">Nilai tidak boleh kosong</string>
     <string name="MPD_incorrect_message">Silahkan pilih nilai yang benar</string>
+    <string name="select_reward">Select Reward</string>
 </resources>

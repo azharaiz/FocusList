@@ -5,13 +5,15 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <import type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.utils.Converter" />
 
         <variable
             name="todoViewModel"
             type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TodoViewModel" />
+
+        <variable
+            name="rewardSelected"
+            type="id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.RewardSelectViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginVertical="20dp"
-                    android:text="TextView"
+                    android:text="@{rewardSelected.rewardTitle}"
                     android:textSize="18sp" />
 
                 <Button
@@ -92,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Select Reward" />
+                    android:text="@string/select_reward" />
 
             </LinearLayout>
         </ScrollView>
