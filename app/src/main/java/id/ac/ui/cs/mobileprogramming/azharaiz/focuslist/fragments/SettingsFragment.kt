@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities.TodoActivity
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities.LoginActivity
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.databinding.FragmentSettingsBinding
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.SettingsViewModel
 import kotlinx.android.synthetic.main.fragment_settings.view.*
@@ -50,7 +51,9 @@ class SettingsFragment : Fragment() {
 
         view.btnLogout.setOnClickListener {
             Firebase.auth.signOut()
-            (activity as TodoActivity).openLoginPage()
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
         return view
     }
