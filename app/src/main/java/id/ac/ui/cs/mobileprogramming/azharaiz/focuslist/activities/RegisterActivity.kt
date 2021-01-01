@@ -1,6 +1,8 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -28,6 +30,11 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun registerUser(view: View) {
+        if (isNetworkConnected()) {
+            Toast.makeText(applicationContext, "Please connect to internet", Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
         val inputEmail: EditText = findViewById(R.id.inputRegisterEmail)
         val inputPassword: EditText = findViewById(R.id.inputRegisterPassword)
         val inputConfirmPassword: EditText = findViewById(R.id.inputRegisterConfirmPassword)
@@ -85,5 +92,10 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
         }
+    }
+
+    private fun isNetworkConnected(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
     }
 }

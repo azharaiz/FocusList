@@ -1,6 +1,8 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.activities
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -14,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -33,6 +36,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun loginUser(view: View) {
+        if (!isNetworkConnected()) {
+            Toast.makeText(applicationContext, "Please connect to internet", Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
         val inputEmail: EditText = findViewById(R.id.inputLoginEmail)
         val inputPassword: EditText = findViewById(R.id.inputLoginPassword)
         val progressBar: ProgressBar = findViewById(R.id.loginProgressBar)
@@ -72,5 +80,10 @@ class LoginActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                 }
             }
+    }
+
+    private fun isNetworkConnected(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
     }
 }
