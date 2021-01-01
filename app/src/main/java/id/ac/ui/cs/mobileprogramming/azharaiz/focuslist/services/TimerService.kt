@@ -1,10 +1,17 @@
 package id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.services
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.Binder
+import android.os.Build
 import android.os.CountDownTimer
 import android.os.IBinder
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.R
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.data.TimerLog
 import id.ac.ui.cs.mobileprogramming.azharaiz.focuslist.viewmodels.TimerLogViewModel
 
@@ -15,7 +22,13 @@ class TimerService : Service() {
     private var timeRemainingInSeconds: Long = 0
     private var timerStatus: TimerStatus = TimerStatus.Stopped
 
+    companion object {
+        private const val CHANNEL_ID = "focuslist_timer"
+        private const val NOTIFICATION_ID = 170
+    }
+
     private lateinit var mTimerLogViewModel: TimerLogViewModel
+    private lateinit var context: Context
 
     private val broadCastIntent: Intent = Intent()
     private val binder = TimerBinder()
@@ -34,6 +47,11 @@ class TimerService : Service() {
         return binder
     }
 
+    override fun onCreate() {
+        context = applicationContext
+        super.onCreate()
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         return super.onStartCommand(intent, flags, startId)
     }
@@ -48,6 +66,32 @@ class TimerService : Service() {
     fun setDuration(duration: Int) {
         timeDurationInSeconds = duration.toLong() * 60
         timeRemainingInSeconds = duration.toLong() * 60
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "TIMER_NOTIFICATION"
+            val descriptionText = "Channel for FocusList timer"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun sendNotification() {
+        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setContentTitle(getString(R.string.app_name))
+            .setContentText("Time's Up!")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(context)) {
+            notify(NOTIFICATION_ID, builder.build())
+        }
     }
 
     fun startTimer() {
@@ -83,6 +127,8 @@ class TimerService : Service() {
         }
         broadcastTimerIntent(timeDurationInSeconds.toInt())
         timerStatus = TimerStatus.Stopped
+        createNotificationChannel()
+        sendNotification()
         stopSelf()
     }
 
