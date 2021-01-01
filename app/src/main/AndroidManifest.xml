@@ -45,6 +45,9 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.VisualActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
