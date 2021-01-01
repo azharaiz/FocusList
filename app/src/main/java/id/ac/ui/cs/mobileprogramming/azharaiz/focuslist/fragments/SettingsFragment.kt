@@ -18,6 +18,15 @@ import kotlinx.android.synthetic.main.fragment_settings.view.*
 class SettingsFragment : Fragment() {
     private val mSettingsViewModel: SettingsViewModel by activityViewModels()
     private lateinit var binding: FragmentSettingsBinding
+
+    companion object {
+        private external fun helloFromJNI(inputName: String?): String?
+
+        init {
+            System.loadLibrary("native-lib");
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +41,9 @@ class SettingsFragment : Fragment() {
 
         val user = Firebase.auth.currentUser
 
-        mSettingsViewModel.userEmail.value = user!!.email
+        val emailGreeting = helloFromJNI(user!!.email)
+
+        mSettingsViewModel.userEmail.value = emailGreeting;
         mSettingsViewModel.isVerified.value = user.isEmailVerified
 
 
