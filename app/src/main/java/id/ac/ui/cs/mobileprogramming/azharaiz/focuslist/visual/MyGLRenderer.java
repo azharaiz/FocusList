@@ -10,13 +10,10 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
     private static final String TAG = "MyGLRenderer";
-    // mMVPMatrix is an abbreviation for "Model View Projection Matrix"
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
-    private final float[] mRotationMatrix = new float[16];
     private Square mSquare;
-    private float mAngle;
 
     /**
      * Utility method for compiling a OpenGL shader.
@@ -85,21 +82,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         // Draw square
         mSquare.draw(mMVPMatrix);
-
-        // Create a rotation for the triangle
-
-        // Use the following code to generate constant rotation.
-        // Leave this code out when using TouchEvents.
-        // long time = SystemClock.uptimeMillis() % 4000L;
-        // float angle = 0.090f * ((int) time);
-
-        Matrix.setRotateM(mRotationMatrix, 0, mAngle, 0, 0, 1.0f);
-
-        // Combine the rotation matrix with the projection and camera view
-        // Note that the mMVPMatrix factor *must be first* in order
-        // for the matrix multiplication product to be correct.
-        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
-
     }
 
     @Override
@@ -114,21 +96,5 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // in the onDrawFrame() method
         Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
 
-    }
-
-    /**
-     * Returns the rotation angle of the triangle shape (mTriangle).
-     *
-     * @return - A float representing the rotation angle.
-     */
-    public float getAngle() {
-        return mAngle;
-    }
-
-    /**
-     * Sets the rotation angle of the triangle shape (mTriangle).
-     */
-    public void setAngle(float angle) {
-        mAngle = angle;
     }
 }
